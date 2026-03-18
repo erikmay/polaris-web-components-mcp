@@ -5,8 +5,16 @@
 	"module": "src/index.ts",
 	"type": "module",
 	"license": "MIT",
+	"bin": {
+		"polaris-web-components-mcp": "dist/index.js"
+	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"start": "bun src/index.ts",
+		"build": "bun build src/index.ts --target=node --outfile=dist/index.js",
+		"prepublishOnly": "bun run build",
 		"scrape": "bun src/scraper.ts"
 	},
 	"devDependencies": {

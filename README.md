@@ -15,34 +15,20 @@ Instead of relying on training data, your AI assistant can look up accurate, up-
 
 ## Setup
 
-### Prerequisites
-
-- [Bun](https://bun.sh) runtime
-
-### Install
-
-```bash
-git clone https://github.com/erikmay/polaris-web-components-mcp.git
-cd polaris-web-components-mcp
-bun install
-```
-
-### Configure your MCP client
-
 Add to your `.mcp.json` (Claude Code, Cursor, etc.):
 
 ```json
 {
   "mcpServers": {
     "polaris": {
-      "command": "bun",
-      "args": ["/absolute/path/to/polaris-web-components-mcp/src/index.ts"]
+      "command": "npx",
+      "args": ["-y", "github:erikmay/polaris-web-components-mcp"]
     }
   }
 }
 ```
 
-The server communicates over stdio and starts automatically when your MCP client needs it.
+That's it. No cloning, no install -- `npx` downloads and runs the server automatically.
 
 ## Updating component data
 

@@ -1,30 +1,17 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { existsSync } from "fs";
-import { join } from "path";
+import componentsData from "./data/components.json";
+import iconsData from "./data/icons.json";
 import type { ComponentDoc } from "./types.ts";
 
-const DATA_FILE = join(import.meta.dir, "data/components.json");
-const ICONS_FILE = join(import.meta.dir, "data/icons.json");
+const components: ComponentDoc[] = componentsData;
+const icons: string[] = iconsData;
 
-let components: ComponentDoc[] = [];
-let icons: string[] = [];
-
-if (existsSync(DATA_FILE)) {
-	components = JSON.parse(await Bun.file(DATA_FILE).text());
-	console.error(`Loaded ${components.length} Polaris components.`);
-} else {
-	console.error(
-		"Warning: components.json not found. Run `bun run scrape` first.",
-	);
-}
-
-if (existsSync(ICONS_FILE)) {
-	icons = JSON.parse(await Bun.file(ICONS_FILE).text());
-	console.error(`Loaded ${icons.length} Polaris icons.`);
-}
+console.error(
+	`Loaded ${components.length} Polaris components, ${icons.length} icons.`,
+);
 
 function findComponent(name: string): ComponentDoc | undefined {
 	const lower = name.toLowerCase().replace(/^s-/, "");
