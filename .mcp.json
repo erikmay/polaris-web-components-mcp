@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "polaris": {
+      "command": "bun",
+      "args": [
+        "/Users/erikmay/Developer/personal/polaris-web-components-mcp/src/index.ts"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"name": "polaris-web-components-mcp",
+	"version": "1.0.0",
+	"description": "MCP server for Shopify Polaris Web Components documentation",
+	"module": "src/index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"start": "bun src/index.ts",
+		"scrape": "bun src/scraper.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.27.1",
+		"zod": "^4.3.6"
+	}
+}
