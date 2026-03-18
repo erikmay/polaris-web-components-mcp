@@ -5,11 +5,12 @@ import { z } from "zod";
 import { existsSync } from "fs";
 import { join } from "path";
 import type { ComponentDoc } from "./types.ts";
-import { COMPONENTS, getComponentUrl } from "./components.ts";
 
 const DATA_FILE = join(import.meta.dir, "data/components.json");
+const ICONS_FILE = join(import.meta.dir, "data/icons.json");
 
 let components: ComponentDoc[] = [];
+let icons: string[] = [];
 
 if (existsSync(DATA_FILE)) {
 	components = JSON.parse(await Bun.file(DATA_FILE).text());
@@ -18,6 +19,11 @@ if (existsSync(DATA_FILE)) {
 	console.error(
 		"Warning: components.json not found. Run `bun run scrape` first.",
 	);
+}
+
+if (existsSync(ICONS_FILE)) {
+	icons = JSON.parse(await Bun.file(ICONS_FILE).text());
+	console.error(`Loaded ${icons.length} Polaris icons.`);
 }
 
 function findComponent(name: string): ComponentDoc | undefined {
@@ -55,9 +61,8 @@ server.registerTool(
 		let filtered = components;
 		if (category) {
 			const lower = category.toLowerCase();
-			filtered = components.filter(
-				(c) =>
-					c.category.toLowerCase().includes(lower),
+			filtered = components.filter((c) =>
+				c.category.toLowerCase().includes(lower),
 			);
 		}
 
@@ -80,13 +85,13 @@ server.registerTool(
 	},
 );
 
-// Tool: Get component details (properties, events, slots)
+// Tool: Get component details (full markdown documentation)
 server.registerTool(
 	"get_component",
 	{
 		title: "Get Component",
 		description:
-			"Get the full definition of a Polaris Web Component including properties, events, slots, and usage guidelines. Accepts component name (e.g., 'Button') or tag name (e.g., 's-button').",
+			"Get the full Shopify documentation for a Polaris Web Component including properties, events, slots, examples, and usage guidelines. Accepts component name (e.g., 'Button') or tag name (e.g., 's-button').",
 		inputSchema: {
 			name: z
 				.string()
@@ -109,85 +114,11 @@ server.registerTool(
 			};
 		}
 
-		const result = {
-			name: component.name,
-			tagName: component.tagName,
-			category: component.category,
-			description: component.description,
-			url: component.url,
-			properties: component.properties,
-			events: component.events,
-			slots: component.slots,
-			usefulFor: component.usefulFor,
-			bestPractices: component.bestPractices,
-			contentGuidelines: component.contentGuidelines,
-		};
-
 		return {
 			content: [
 				{
 					type: "text" as const,
-					text: JSON.stringify(result, null, "\t"),
-				},
-			],
-		};
-	},
-);
-
-// Tool: Get component examples
-server.registerTool(
-	"get_component_examples",
-	{
-		title: "Get Component Examples",
-		description:
-			"Get code examples for a Polaris Web Component in both JSX and HTML formats.",
-		inputSchema: {
-			name: z
-				.string()
-				.describe("Component name or tag name"),
-			format: z
-				.enum(["html", "jsx", "both"])
-				.default("html")
-				.describe("Code format to return"),
-		},
-	},
-	async ({ name, format }) => {
-		const component = findComponent(name);
-		if (!component) {
-			return {
-				content: [
-					{
-						type: "text" as const,
-						text: `Component "${name}" not found. Use list_components to see available components.`,
-					},
-				],
-				isError: true,
-			};
-		}
-
-		const examples = component.examples.map((ex) => {
-			const result: Record<string, string> = {
-				title: ex.title,
-			};
-			if (ex.description) result.description = ex.description;
-			if (format === "jsx" || format === "both") result.jsx = ex.jsx;
-			if (format === "html" || format === "both") result.html = ex.html;
-			return result;
-		});
-
-		return {
-			content: [
-				{
-					type: "text" as const,
-					text: JSON.stringify(
-						{
-							name: component.name,
-							tagName: component.tagName,
-							examples,
-						},
-						null,
-						"\t",
-					),
+					text: component.markdown,
 				},
 			],
 		};
@@ -200,23 +131,16 @@ server.registerTool(
 	{
 		title: "Search Components",
 		description:
-			"Search Polaris Web Components by keyword across names, descriptions, and properties.",
+			"Search Polaris Web Components by keyword across names, descriptions, and documentation.",
 		inputSchema: {
 			query: z.string().describe("Search query"),
 		},
 	},
 	async ({ query }) => {
 		const lower = query.toLowerCase();
-		const matches = components.filter((c) => {
-			if (c.name.toLowerCase().includes(lower)) return true;
-			if (c.tagName.toLowerCase().includes(lower)) return true;
-			if (c.description.toLowerCase().includes(lower)) return true;
-			if (c.properties.some((p) => p.name.toLowerCase().includes(lower)))
-				return true;
-			if (c.usefulFor.some((u) => u.toLowerCase().includes(lower)))
-				return true;
-			return false;
-		});
+		const matches = components.filter((c) =>
+			c.markdown.toLowerCase().includes(lower),
+		);
 
 		const results = matches.map((c) => ({
 			name: c.name,
@@ -233,6 +157,40 @@ server.registerTool(
 					text: results.length
 						? JSON.stringify(results, null, "\t")
 						: `No components found matching "${query}".`,
+				},
+			],
+		};
+	},
+);
+
+// Tool: Search icons by keyword
+server.registerTool(
+	"search_icons",
+	{
+		title: "Search Icons",
+		description:
+			"Search available Polaris icon names by keyword. Returns matching icon names that can be used in the `icon` property of components like Button, Badge, Select, and TextField.",
+		inputSchema: {
+			query: z
+				.string()
+				.optional()
+				.describe(
+					"Search keyword to filter icons (e.g., 'cart', 'arrow', 'check'). Omit to list all icons.",
+				),
+		},
+	},
+	async ({ query }) => {
+		const matches = query
+			? icons.filter((icon) => icon.includes(query.toLowerCase()))
+			: icons;
+
+		return {
+			content: [
+				{
+					type: "text" as const,
+					text: matches.length
+						? `${matches.length} icons found:\n${matches.join(", ")}`
+						: `No icons found matching "${query}".`,
 				},
 			],
 		};
