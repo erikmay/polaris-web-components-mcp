@@ -49747,6 +49747,736 @@ Tooltips only render on devices with a pointer and do not display on mobile devi
         type: "HTMLElement"
       }
     ]
+  },
+  {
+    name: "AppNav",
+    tagName: "s-app-nav",
+    url: "https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-nav",
+    category: "App Bridge",
+    description: "The `s-app-nav` component creates a navigation menu for your app. On desktop web browsers, the navigation menu appears as part of the app nav, on the left of the screen. On Shopify mobile, the navigation menu appears in a dropdown from the TitleBar. This is modeled after the [HTML nav element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav). Note that nested navigation items are not supported.",
+    markdown: `---
+title: App Nav
+description: >-
+  The \`s-app-nav\` component creates a navigation menu for your app. On desktop
+  web browsers, the navigation menu appears as part of the app nav, on the left
+  of the screen. On Shopify mobile, the navigation menu appears in a dropdown
+  from the TitleBar. This is modeled after the [HTML nav
+  element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav). Note
+  that nested navigation items are not supported.
+api_name: app-home
+source_url:
+  html: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-nav'
+  md: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-nav.md'
+---
+
+# App Nav
+
+The \`s-app-nav\` component creates a navigation menu for your app. On desktop web browsers, the navigation menu appears as part of the app nav, on the left of the screen. On Shopify mobile, the navigation menu appears in a dropdown from the TitleBar. This is modeled after the [HTML nav element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav). Note that nested navigation items are not supported.
+
+## s-app-nav element
+
+The \`s-app-nav\` element is available for use in your app. It configures the app nav in the Shopify admin.
+
+You may configure the home route of the app by adding the \`rel="home"\` attribute to a child element. If it is provided, it will not be rendered as a link in the app nav. It needs to have \`rel="home"\` set along with the \`href\` set to the root path.
+
+* **children**
+
+  **any**
+
+Examples
+
+## Preview
+
+![](https://cdn.shopify.com/shopifycloud/shopify-dev/development/assets/assets/images/apps/tools/app-bridge-navigation-menu-DdMXEPrX.png)
+
+### Examples
+
+* #### Navigation Menu
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-nav>
+    <s-link href="/" rel="home">Home</s-link>
+    <s-link href="/templates">Templates</s-link>
+    <s-link href="/settings">Settings</s-link>
+  </s-app-nav>
+  \`\`\`
+
+## Related
+
+[React components - Navigation API](https://shopify.dev/docs/api/app-home/apis/navigation)
+`,
+    props: []
+  },
+  {
+    name: "AppWindow",
+    tagName: "s-app-window",
+    url: "https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-window",
+    category: "App Bridge",
+    description: "The `s-app-window` component displays a fullscreen modal window. It allows you to open up a page in your app specified by the `src` property. You can use this when you have larger or complex workflows that you want to display. The app window covers the entirety of the screen. The top bar of the app window is controlled by the admin and allows the user to exit if needed.",
+    markdown: `---
+title: App Window
+description: >-
+  The \`s-app-window\` component displays a fullscreen modal window. It allows you
+  to open up a page in your app specified by the \`src\` property. You can use
+  this when you have larger or complex workflows that you want to display. The
+  app window covers the entirety of the screen. The top bar of the app window is
+  controlled by the admin and allows the user to exit if needed.
+api_name: app-home
+source_url:
+  html: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-window'
+  md: >-
+    https://shopify.dev/docs/api/app-home/app-bridge-web-components/app-window.md
+---
+
+# App Window
+
+The \`s-app-window\` component displays a fullscreen modal window. It allows you to open up a page in your app specified by the \`src\` property. You can use this when you have larger or complex workflows that you want to display. The app window covers the entirety of the screen. The top bar of the app window is controlled by the admin and allows the user to exit if needed.
+
+## s-app-window element
+
+The \`s-app-window\` element is available for use in your app. It configures a App Window to display in the Shopify Admin.
+
+The content of the app window is specified by the src property and should point to a route within your app.
+
+* **src**
+
+  **string**
+
+  **required**
+
+  The URL of the content to display within the S-App-Window. S-App-Window only supports src-based content (required).
+
+* **id**
+
+  **string**
+
+  A unique identifier for the S-App-Window
+
+## s-app-window instance
+
+The \`s-app-window\` element provides instance properties and methods to control the App Window.
+
+* **content**
+
+  **undefined**
+
+  **required**
+
+  Always returns undefined for s-app-window (src-only)
+
+* **addEventListener**
+
+  **(type: "show" | "hide", listener: EventListenerOrEventListenerObject) => void**
+
+  Add 'show' | 'hide' event listeners.
+
+* **contentWindow**
+
+  **Window | null**
+
+  A getter for the Window object of the s-app-window iframe. Only accessible when the s-app-window is open.
+
+* **hide**
+
+  **() => Promise\\<void>**
+
+  Hides the s-app-window element
+
+* **removeEventListener**
+
+  **(type: "show" | "hide", listener: EventListenerOrEventListenerObject) => void**
+
+  Remove 'show' | 'hide' event listeners.
+
+* **show**
+
+  **() => Promise\\<void>**
+
+  Shows the s-app-window element
+
+* **src**
+
+  **string**
+
+  A getter/setter for the s-app-window src URL
+
+* **toggle**
+
+  **() => Promise\\<void>**
+
+  Toggles the s-app-window element between showing and hidden states
+
+Examples
+
+## Preview
+
+![](https://cdn.shopify.com/shopifycloud/shopify-dev/development/assets/assets/images/templated-apis-screenshots/admin/app-bridge-web-components/s-app-window-jyBt5mAs.png)
+
+### Examples
+
+* #### App Window
+
+  ##### App Window
+
+  \`\`\`html
+  <s-app-window id="app-window" src="/app-window-content.html"></s-app-window>
+
+  <s-button command="--show" commandFor="app-window">Open App Window</s-button>
+  \`\`\`
+
+* #### Title bar heading
+
+  ##### Description
+
+  App Window title
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window src="/app-window-content.html"></s-app-window>
+
+  // app-window-content.html
+  <s-page heading="App Window Title"></s-page>
+  \`\`\`
+
+* #### Title bar actions
+
+  ##### Description
+
+  App Window title bar actions
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window src="/app-window-content.html"></s-app-window>
+
+  // app-window-content.html
+  <s-page heading="App Window Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Close')">Close</s-button>
+  </s-page>
+  \`\`\`
+
+* #### Title bar accessory badge
+
+  ##### Description
+
+  Display a status badge in the title bar using the accessory slot. The \\\`tone\\\` attribute controls the badge color (\\\`info\\\`, \\\`success\\\`, \\\`warning\\\`, or \\\`critical\\\`).
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window src="/app-window-content.html"></s-app-window>
+
+  // app-window-content.html
+  <s-page heading="Edit Product">
+    <s-badge slot="accessory" tone="warning">Draft</s-badge>
+    <s-button slot="primary-action">Save</s-button>
+  </s-page>
+  \`\`\`
+
+* #### Icons and menu actions
+
+  ##### Description
+
+  Add icons to action buttons and use \\\`commandfor\\\` to create dropdown menus. Menu buttons support the \\\`tone\\\` attribute for destructive actions.
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window src="/app-window-content.html"></s-app-window>
+
+  // app-window-content.html
+  <s-page heading="Product Details">
+    <s-button slot="primary-action" icon="save">Save</s-button>
+    <s-button slot="secondary-actions" icon="view">Preview</s-button>
+    <s-button slot="secondary-actions" commandfor="actions-menu" icon="menu">More</s-button>
+    <s-menu id="actions-menu">
+      <s-button icon="duplicate">Duplicate</s-button>
+      <s-button icon="archive">Archive</s-button>
+      <s-button icon="delete" tone="critical">Delete</s-button>
+    </s-menu>
+  </s-page>
+  \`\`\`
+
+* #### Instance methods
+
+  ##### Description
+
+  Controlling the App Window with the show and hide methods
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window id="app-window" src="/app-window-content.html"></s-app-window>
+
+  <s-button onclick="document.getElementById('app-window').show()">Show App Window</s-button>
+  <s-button onclick="document.getElementById('app-window').hide()">Hide App Window</s-button>
+  \`\`\`
+
+* #### Command attribute
+
+  ##### Description
+
+  Controlling the App Window with the command attribute
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window id="app-window" src="/app-window-content.html"></s-app-window>
+
+  <s-button command="--show" commandFor="app-window">Open App Window</s-button>
+  <s-button command="--hide" commandFor="app-window">Hide App Window</s-button>
+  <s-button command="--toggle" commandFor="app-window">Toggle App Window</s-button>
+  \`\`\`
+
+* #### Form with save bar
+
+  ##### Description
+
+  Forms with the \\\`data-save-bar\\\` attribute automatically integrate with the save bar. Changes to form inputs are tracked and the save bar appears when there are unsaved changes.
+
+  ##### Default
+
+  \`\`\`html
+  <s-app-window src="/app-window-content.html"></s-app-window>
+
+  // app-window-content.html
+  <s-page heading="Edit Settings">
+    <s-button slot="primary-action" type="submit" form="settings-form">Save</s-button>
+    <form id="settings-form" data-save-bar>
+      <s-text-field label="Store Name" name="storeName"></s-text-field>
+      <s-checkbox label="Enable Notifications" name="notifications"></s-checkbox>
+    </form>
+  </s-page>
+  \`\`\`
+
+## Related
+
+[API - Modal](https://shopify.dev/docs/api/app-home/apis/modal-api)
+`,
+    props: [
+      {
+        name: "content",
+        type: "undefined"
+      },
+      {
+        name: "addEventListener",
+        type: '(type: "show" | "hide", listener: EventListenerOrEventListenerObject) => void'
+      },
+      {
+        name: "contentWindow",
+        type: "Window | null"
+      },
+      {
+        name: "hide",
+        type: "() => Promise\\<void>"
+      },
+      {
+        name: "removeEventListener",
+        type: '(type: "show" | "hide", listener: EventListenerOrEventListenerObject) => void'
+      },
+      {
+        name: "show",
+        type: "() => Promise\\<void>"
+      },
+      {
+        name: "src",
+        type: "string"
+      },
+      {
+        name: "toggle",
+        type: "() => Promise\\<void>"
+      }
+    ]
+  },
+  {
+    name: "Forms",
+    tagName: "s-forms",
+    url: "https://shopify.dev/docs/api/app-home/app-bridge-web-components/forms",
+    category: "App Bridge",
+    description: "Enable automatic save bar integration for HTML forms by adding the `data-save-bar` attribute to your form element. When form data changes, a save bar automatically appears, prompting users to save or discard their changes.",
+    markdown: `---
+title: Forms
+description: >-
+  Enable automatic save bar integration for HTML forms by adding the
+  \`data-save-bar\` attribute to your form element. When form data changes, a save
+  bar automatically appears, prompting users to save or discard their changes.
+
+
+  Alternatively, use the global \`shopify.saveBar\` API for programmatic control
+  over the save bar behavior. Programmatic control of the save bar is available
+  as \`shopify.saveBar.show()\`, \`shopify.saveBar.hide()\`, and
+  \`shopify.saveBar.toggle()\`.
+
+
+  **Note:** The save bar functionality requires the full App Bridge UI library
+  to be loaded via a [script tag](/docs/api/app-home/using-polaris-components).
+api_name: app-home
+source_url:
+  html: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/forms'
+  md: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/forms.md'
+---
+
+# Forms
+
+Enable automatic save bar integration for HTML forms by adding the \`data-save-bar\` attribute to your form element. When form data changes, a save bar automatically appears, prompting users to save or discard their changes.
+
+Alternatively, use the global \`shopify.saveBar\` API for programmatic control over the save bar behavior. Programmatic control of the save bar is available as \`shopify.saveBar.show()\`, \`shopify.saveBar.hide()\`, and \`shopify.saveBar.toggle()\`.
+
+**Note:** The save bar functionality requires the full App Bridge UI library to be loaded via a [script tag](https://shopify.dev/docs/api/app-home/using-polaris-components).
+
+## Enable save bar on forms
+
+Simply add \`data-save-bar\` to your \`<form>\` element:
+
+\`\`\`html
+<form data-save-bar>
+  <!-- Your form fields -->
+</form>
+\`\`\`
+
+* **data-discard-confirmation**
+
+  **boolean**
+
+* **data-save-bar**
+
+  **boolean**
+
+* **onreset**
+
+  **(event: Event) => void**
+
+* **onsubmit**
+
+  **(event: SubmitEvent) => void**
+
+Examples
+
+## Preview
+
+![](https://cdn.shopify.com/shopifycloud/shopify-dev/development/assets/assets/images/templated-apis-screenshots/admin/app-bridge-web-components/forms-alt-BR0YaM5v.png)
+
+### Examples
+
+* #### Form with automatic save bar
+
+  ##### Default
+
+  \`\`\`html
+  <form data-save-bar>
+    <s-text-field
+      label="Product Title"
+      name="title"
+      required
+    ></s-text-field>
+
+    <s-text-area
+      label="Description"
+      name="description"
+      rows="4"
+    ></s-text-area>
+
+    <s-text-field
+      label="Price"
+      name="price"
+      type="number"
+      step="0.01"
+      min="0"
+    ></s-text-field>
+  </form>
+  \`\`\`
+
+* #### Simple form with save bar
+
+  ##### Description
+
+  Basic form with automatic save bar functionality.
+
+  ##### Default
+
+  \`\`\`html
+  <form data-save-bar>
+    <s-text-field
+      label="Product Title"
+      name="title"
+      required
+    ></s-text-field>
+
+    <s-text-area
+      label="Description"
+      name="description"
+      rows="4"
+    ></s-text-area>
+
+    <s-text-field
+      label="Price"
+      name="price"
+      type="number"
+      step="0.01"
+      min="0"
+    ></s-text-field>
+  </form>
+  \`\`\`
+
+* #### Programmatic save bar control
+
+  ##### Description
+
+  Using the programmatic API for custom save logic.
+
+  ##### Default
+
+  \`\`\`html
+  <form id="custom-form">
+    <s-text-field
+      id="settings-name"
+      label="Store Name"
+    ></s-text-field>
+
+    <s-checkbox
+      id="settings-notifications"
+      label="Enable email notifications"
+    ></s-checkbox>
+  </form>
+
+  <script>
+    // Track form changes manually
+    const form = document.getElementById('custom-form');
+    let hasChanges = false;
+
+    form.addEventListener('input', () => {
+      if (!hasChanges) {
+        hasChanges = true;
+        // Show save bar programmatically
+        shopify.saveBar.show({
+          onSave: async () => {
+            // Custom save logic
+            console.log('Saving form data...');
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            hasChanges = false;
+            shopify.saveBar.hide();
+          },
+          onDiscard: () => {
+            // Reset form
+            form.reset();
+            hasChanges = false;
+            shopify.saveBar.hide();
+          }
+        });
+      }
+    });
+  </script>
+  \`\`\`
+
+* #### Form with onsubmit and onreset events
+
+  ##### Description
+
+  Using the onsubmit and onreset events to handle form submission and reset.
+
+  ##### Default
+
+  \`\`\`html
+  <form
+    data-save-bar
+    onsubmit="console.log('submit');"
+    onreset="console.log('reset');"
+  >
+    <s-text-field label="Name" name="name"></s-text-field>
+    <s-button type="submit">Submit</s-button>
+    <s-button type="reset">Reset</s-button>
+  </form>
+  \`\`\`
+
+## Related
+
+[API - Save Bar](https://shopify.dev/docs/api/app-home/apis/save-bar)
+`,
+    props: []
+  },
+  {
+    name: "TitleBar",
+    tagName: "s-title-bar",
+    url: "https://shopify.dev/docs/api/app-home/app-bridge-web-components/title-bar",
+    category: "App Bridge",
+    description: "The admin title bar is a critical part of the Shopify Admin experience. It provides a way to display the current page title and actions for the user to take. This guide will show you how to work with the admin title bar using the App Bridge UI library.",
+    markdown: `---
+title: Title bar
+description: >-
+  The admin title bar is a critical part of the Shopify Admin experience. It
+  provides a way to display the current page title and actions for the user to
+  take. This guide will show you how to work with the admin title bar using the
+  App Bridge UI library.
+api_name: app-home
+source_url:
+  html: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/title-bar'
+  md: 'https://shopify.dev/docs/api/app-home/app-bridge-web-components/title-bar.md'
+---
+
+# Title bar
+
+The admin title bar is a critical part of the Shopify Admin experience. It provides a way to display the current page title and actions for the user to take. This guide will show you how to work with the admin title bar using the App Bridge UI library.
+
+## Use the s-page component
+
+The \`s-page\` component is available for use in your app. It configures the title bar in the Shopify admin in addition to managing the page layout. Note that you do not need the full App Bridge UI library to use this component. You can still use \`s-page\` (and its required child components) in your app.
+
+* **children**
+
+  **SPageChildren**
+
+* **heading**
+
+  **string**
+
+### SPageChildren
+
+* breadcrumbActions
+
+  \`\`\`ts
+  HTMLElement
+  \`\`\`
+
+* primaryAction
+
+  \`\`\`ts
+  HTMLElement
+  \`\`\`
+
+* secondaryActions
+
+  \`\`\`ts
+  HTMLElement[]
+  \`\`\`
+
+Examples
+
+## Preview
+
+![](https://cdn.shopify.com/shopifycloud/shopify-dev/development/assets/assets/images/templated-apis-screenshots/admin/app-bridge-web-components/title-bar-app-home-BfbrPNeF.png)
+
+### Examples
+
+* #### Simple s-page component
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Page Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Close')">Close</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Cancel')">Cancel</s-button>
+  </s-page>
+  \`\`\`
+
+* #### Simple s-page component
+
+  ##### Description
+
+  The \\\`s-page\\\` component accepts the following properties: - \\\`heading\\\`: The heading for the page. This is the title of the page. And the following slots: - \\\`primary-action\\\`: The primary action for the page. This is the main action for the page. - \\\`secondary-actions\\\`: The secondary actions for the page. This is a group of actions that are related to the page. - \\\`breadcrumb-actions\\\`: The breadcrumb actions for the page. This is a link to the home page or the previous page. - \\\`accessory\\\`: A status badge displayed next to the title. Use with \\\`s-badge\\\` and the \\\`tone\\\` attribute (\\\`info\\\`, \\\`success\\\`, \\\`warning\\\`, or \\\`critical\\\`).
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Page Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Close')">Close</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Cancel')">Cancel</s-button>
+  </s-page>
+  \`\`\`
+
+* #### Accessory badge
+
+  ##### Description
+
+  Display a status badge next to the page title using the \\\`accessory\\\` slot. Use \\\`s-badge\\\` with the \\\`tone\\\` attribute to indicate status (\\\`info\\\`, \\\`success\\\`, \\\`warning\\\`, or \\\`critical\\\`).
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Edit Product">
+    <s-badge slot="accessory" tone="warning">Draft</s-badge>
+    <s-button slot="primary-action">Save</s-button>
+  </s-page>
+  \`\`\`
+
+* #### Grouped secondary actions
+
+  ##### Description
+
+  You can group secondary actions together using \\\`s-menu\\\` and the \\\`commandfor\\\` attribute. This will create a dropdown menu with the actions. The text content of the \\\`s-button\\\` used with the \\\`commandfor\\\` attribute will display a label for the group of actions.
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Page Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" commandfor="more-actions-id">More actions</s-button>
+    <s-menu id="more-actions-id">
+      <s-button onclick="shopify.toast.show('Action 1')">Action 1</s-button>
+      <s-button onclick="shopify.toast.show('Action 2')">Action 2</s-button>
+      <s-button onclick="shopify.toast.show('Action 3')">Action 3</s-button>
+    </s-menu>
+  </s-page>
+  \`\`\`
+
+* #### Breadcrumb actions
+
+  ##### Description
+
+  You can add breadcrumb actions using the \\\`breadcrumb-actions\\\` slot. This will add a link to the breadcrumb actions. You can use this to add a link to the home page or to add a link to the previous page.
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Page Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Cancel')">Cancel</s-button>
+    <s-link slot="breadcrumb-actions" href="/">Home</s-link>
+  </s-page>
+  \`\`\`
+
+* #### Complete example
+
+  ##### Description
+
+  Here is a complete example of how to use the \\\`s-page\\\` component to interact with the admin title bar.
+
+  ##### Default
+
+  \`\`\`html
+  <s-page heading="Page Title">
+    <s-button slot="primary-action" onclick="shopify.toast.show('Save')">Save</s-button>
+    <s-button slot="secondary-actions" onclick="shopify.toast.show('Close')">Close</s-button>
+    <s-button slot="secondary-actions" commandfor="more-actions-id">More actions</s-button>
+    <s-menu id="more-actions-id">
+      <s-button onclick="shopify.toast.show('Action 1')">Action 1</s-button>
+      <s-button onclick="shopify.toast.show('Action 2')">Action 2</s-button>
+      <s-button onclick="shopify.toast.show('Action 3')">Action 3</s-button>
+    </s-menu>
+    <s-link slot="breadcrumb-actions" href="/">Home</s-link>
+  </s-page>
+  \`\`\`
+
+## Related
+
+[API - Navigation](https://shopify.dev/docs/api/app-home/apis/navigation)
+`,
+    props: [
+      {
+        name: "children",
+        type: "SPageChildren"
+      },
+      {
+        name: "heading",
+        type: "string"
+      }
+    ]
   }
 ];
 
