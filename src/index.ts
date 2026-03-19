@@ -4,15 +4,17 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import componentsData from "./data/components.json";
 import iconsData from "./data/icons.json";
+import patternsData from "./data/patterns.json";
 import guide from "./data/guide.md" with { type: "text" };
-import type { ComponentDoc } from "./types.ts";
+import type { ComponentDoc, PatternDoc } from "./types.ts";
 import { searchIcons, findClosest } from "./fuzzy.ts";
 
 const components: ComponentDoc[] = componentsData;
 const icons: string[] = iconsData;
+const patterns: PatternDoc[] = patternsData;
 
 console.error(
-	`Loaded ${components.length} Polaris components, ${icons.length} icons.`,
+	`Loaded ${components.length} components, ${patterns.length} patterns, ${icons.length} icons.`,
 );
 
 function findComponent(name: string): ComponentDoc | undefined {
@@ -333,6 +335,105 @@ server.registerTool(
 					text: `Found ${issues.length} issue${issues.length > 1 ? "s" : ""}:\n\n${issues.map((i, idx) => `${idx + 1}. ${i}`).join("\n")}`,
 				},
 			],
+		};
+	},
+);
+
+// Tool: List all patterns
+server.registerTool(
+	"list_patterns",
+	{
+		title: "List Patterns",
+		description:
+			"List all available Shopify Polaris UI patterns (compositions and page templates). Patterns show how to combine components into common UI layouts like empty states, index tables, settings pages, and more.",
+		inputSchema: {
+			category: z
+				.enum(["Compositions", "Templates"])
+				.optional()
+				.describe(
+					"Filter by category: 'Compositions' for reusable UI blocks (cards, lists, empty states), 'Templates' for full page layouts (details, homepage, index, settings)",
+				),
+		},
+	},
+	async ({ category }) => {
+		let filtered = patterns;
+		if (category) {
+			filtered = patterns.filter((p) => p.category === category);
+		}
+
+		const list = filtered.map((p) => ({
+			name: p.name,
+			category: p.category,
+			description: p.description,
+			url: p.url,
+		}));
+
+		return {
+			content: [
+				{
+					type: "text" as const,
+					text: JSON.stringify(list, null, "\t"),
+				},
+			],
+		};
+	},
+);
+
+// Tool: Get pattern details
+server.registerTool(
+	"get_pattern",
+	{
+		title: "Get Pattern",
+		description:
+			"Get the full documentation for one or more Shopify Polaris UI patterns including code examples and best practices. Use list_patterns first to see available patterns.",
+		inputSchema: {
+			names: z
+				.array(z.string())
+				.describe(
+					"One or more pattern names (e.g., ['Empty State', 'Index Table', 'Settings'])",
+				),
+		},
+	},
+	async ({ names }) => {
+		const results: { type: "text"; text: string }[] = [];
+		const errors: string[] = [];
+
+		for (const name of names) {
+			const lower = name.toLowerCase();
+			const pattern = patterns.find(
+				(p) =>
+					p.name.toLowerCase() === lower ||
+					p.slug.endsWith(lower.replace(/\s+/g, "-")),
+			);
+
+			if (!pattern) {
+				const allNames = patterns.map((p) => p.name);
+				const suggestions = findClosest(name, allNames);
+				errors.push(
+					`Pattern "${name}" not found. Did you mean: ${suggestions.join(", ")}?`,
+				);
+			} else {
+				results.push({
+					type: "text" as const,
+					text: pattern.markdown,
+				});
+			}
+		}
+
+		if (errors.length > 0) {
+			results.push({
+				type: "text" as const,
+				text: errors.join("\n\n"),
+			});
+		}
+
+		return {
+			content: results.length
+				? results
+				: [{ type: "text" as const, text: "No pattern names provided." }],
+			...(errors.length > 0 && results.length === errors.length
+				? { isError: true }
+				: {}),
 		};
 	},
 );

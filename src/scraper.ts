@@ -3,14 +3,16 @@ import {
 	getComponentMdUrl,
 	getComponentUrl,
 } from "./components.ts";
+import { PATTERNS, getPatternMdUrl, getPatternUrl } from "./patterns.ts";
 import { parseFrontmatterDescription, camelToKebab } from "./parser.ts";
-import type { ComponentDoc, ComponentProp } from "./types.ts";
+import type { ComponentDoc, ComponentProp, PatternDoc } from "./types.ts";
 import { existsSync, mkdirSync } from "fs";
 import { join } from "path";
 
 const DATA_DIR = join(import.meta.dir, "data");
 const OUTPUT_FILE = join(DATA_DIR, "components.json");
 const ICONS_FILE = join(DATA_DIR, "icons.json");
+const PATTERNS_FILE = join(DATA_DIR, "patterns.json");
 const GUIDE_FILE = join(DATA_DIR, "guide.md");
 
 const GUIDE_URL =
@@ -197,6 +199,40 @@ async function scrapeAll(): Promise<void> {
 
 	await Bun.write(OUTPUT_FILE, JSON.stringify(results, null, "\t"));
 	console.log(`Saved ${results.length} components to ${OUTPUT_FILE}`);
+
+	// Scrape patterns
+	const patternResults: PatternDoc[] = [];
+	console.log(`\nScraping ${PATTERNS.length} patterns...\n`);
+
+	for (const pattern of PATTERNS) {
+		try {
+			process.stdout.write(`  ${pattern.name}...`);
+			const url = getPatternMdUrl(pattern.slug);
+			const response = await fetch(url);
+			if (!response.ok) throw new Error(`${response.status}`);
+			const markdown = await response.text();
+			const description = parseFrontmatterDescription(markdown);
+
+			patternResults.push({
+				name: pattern.name,
+				slug: pattern.slug,
+				url: getPatternUrl(pattern.slug),
+				category: pattern.category,
+				description,
+				markdown,
+			});
+
+			console.log(` OK (${markdown.length} chars)`);
+			await Bun.sleep(200);
+		} catch (err) {
+			const msg = err instanceof Error ? err.message : String(err);
+			errors.push(`Pattern ${pattern.name}: ${msg}`);
+			console.log(` FAILED - ${msg}`);
+		}
+	}
+
+	await Bun.write(PATTERNS_FILE, JSON.stringify(patternResults, null, "\t"));
+	console.log(`\nSaved ${patternResults.length} patterns to ${PATTERNS_FILE}`);
 
 	if (errors.length > 0) {
 		console.error(`\n${errors.length} errors:`);

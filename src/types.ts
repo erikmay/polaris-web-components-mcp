@@ -20,3 +20,18 @@ export type ComponentListEntry = {
 	category: string;
 	categorySlug: string;
 };
+
+export type PatternEntry = {
+	name: string;
+	slug: string;
+	category: "Compositions" | "Templates";
+};
+
+export type PatternDoc = {
+	name: string;
+	slug: string;
+	url: string;
+	category: "Compositions" | "Templates";
+	description: string;
+	markdown: string;
+};
