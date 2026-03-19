@@ -242,88 +242,190 @@ server.registerTool(
 	},
 );
 
+// Common HTML attributes that are always valid on any element
+const GLOBAL_HTML_ATTRS = new Set([
+	"id", "class", "classname", "style", "slot", "hidden", "tabindex",
+	"aria-label", "aria-hidden", "aria-describedby", "aria-expanded",
+	"aria-controls", "aria-live", "aria-busy", "role",
+	"data-", "part", "key", "ref", "dangerouslysetinnerhtml",
+]);
+
+/**
+ * Replace JSX expressions {...} with a safe placeholder so that
+ * characters like > inside arrow functions don't break tag parsing.
+ */
+function stripJsxExpressions(source: string): string {
+	let result = "";
+	let depth = 0;
+	let inString: string | null = null;
+
+	for (let i = 0; i < source.length; i++) {
+		const ch = source[i]!;
+		const prev = source[i - 1];
+
+		// Track string literals inside expressions
+		if (depth > 0 && !inString && (ch === '"' || ch === "'" || ch === "`")) {
+			inString = ch;
+		} else if (inString && ch === inString && prev !== "\\") {
+			inString = null;
+		}
+
+		if (!inString && ch === "{") {
+			if (depth === 0) result += '"__jsx__"';
+			depth++;
+		} else if (!inString && ch === "}") {
+			depth--;
+		} else if (depth === 0) {
+			result += ch;
+		}
+	}
+
+	return result;
+}
+
+function validateSource(
+	source: string,
+	fileName?: string,
+): string[] {
+	// Strip JSX expressions to avoid > in arrows breaking tag parsing
+	const cleaned = stripJsxExpressions(source);
+	// Match both regular and self-closing tags: <s-button ...> and <s-button ... />
+	const tagPattern = /<(s-[\w-]+)(\s[^>]*?)?\s*\/?>/g;
+	const issues: string[] = [];
+	const checked = new Set<string>();
+	const prefix = fileName ? `${fileName}: ` : "";
+
+	let match;
+	while ((match = tagPattern.exec(cleaned)) !== null) {
+		const tagName = match[1]!;
+		const attrsStr = match[2] ?? "";
+
+		const component = components.find(
+			(c) => c.tagName === tagName,
+		);
+
+		if (!component) {
+			if (!checked.has(tagName)) {
+				const allTags = components.map((c) => c.tagName);
+				const suggestions = findClosest(tagName, allTags);
+				issues.push(
+					`${prefix}Unknown component <${tagName}>. Did you mean: ${suggestions.join(", ")}?`,
+				);
+				checked.add(tagName);
+			}
+			continue;
+		}
+
+		// Extract attributes — handles HTML ("val"), JSX ({val}), and bare attributes
+		const attrPattern = /\s([\w-]+)(?:=(?:"[^"]*"|'[^']*'|\{[^}]*\}|[^\s>]*))?/g;
+		const knownProps = new Set(
+			component.props.map((p) => p.name.toLowerCase()),
+		);
+
+		let attrMatch;
+		while ((attrMatch = attrPattern.exec(attrsStr)) !== null) {
+			const attr = attrMatch[1]!;
+			const attrLower = attr.toLowerCase();
+
+			// Skip global HTML/aria/data attributes and event handlers
+			if (
+				GLOBAL_HTML_ATTRS.has(attrLower) ||
+				attrLower.startsWith("aria-") ||
+				attrLower.startsWith("data-") ||
+				attrLower.startsWith("on")
+			) {
+				continue;
+			}
+
+			if (!knownProps.has(attrLower)) {
+				const propNames = component.props.map((p) => p.name);
+				const suggestions = findClosest(attr, propNames, 2);
+				issues.push(
+					`${prefix}<${tagName}>: Unknown attribute "${attr}". Did you mean: ${suggestions.join(", ")}?`,
+				);
+			}
+		}
+	}
+
+	return issues;
+}
+
 // Tool: Validate markup against known components and properties
 server.registerTool(
 	"validate_markup",
 	{
 		title: "Validate Markup",
 		description:
-			"Validate HTML markup against known Polaris Web Components. Checks for unknown components, unknown attributes, and suggests fixes.",
+			"Validate HTML/JSX markup against known Polaris Web Components. Checks for unknown components, unknown attributes, and suggests fixes. Accepts inline markup, a file path, or a glob pattern to validate multiple files at once.",
 		inputSchema: {
-			html: z.string().describe("HTML markup containing Polaris Web Components (s-* tags) to validate"),
+			html: z
+				.string()
+				.optional()
+				.describe("Inline HTML/JSX markup to validate"),
+			file: z
+				.string()
+				.optional()
+				.describe("Absolute file path to validate (e.g., '/path/to/app/routes/login.tsx')"),
+			glob: z
+				.string()
+				.optional()
+				.describe("Glob pattern to validate multiple files (e.g., 'src/**/*.tsx'). Paths are relative to the working directory."),
 		},
 	},
-	async ({ html }) => {
-		const tagPattern = /<(s-[\w-]+)([^>]*)>/g;
-		const issues: string[] = [];
-		const checked = new Set<string>();
-
-		let match;
-		while ((match = tagPattern.exec(html)) !== null) {
-			const tagName = match[1]!;
-			const attrsStr = match[2]!;
-
-			// Find the component
-			const component = components.find(
-				(c) => c.tagName === tagName,
-			);
-
-			if (!component) {
-				if (!checked.has(tagName)) {
-					const allTags = components.map((c) => c.tagName);
-					const suggestions = findClosest(tagName, allTags);
-					issues.push(
-						`Unknown component <${tagName}>. Did you mean: ${suggestions.join(", ")}?`,
-					);
-					checked.add(tagName);
-				}
-				continue;
-			}
-
-			// Extract attributes from the tag
-			const attrPattern = /\s([\w-]+)(?:=(?:"[^"]*"|'[^']*'|[^\s>]*))?/g;
-			const knownProps = new Set(
-				component.props.map((p) => p.name.toLowerCase()),
-			);
-			// Common HTML attributes that are always valid
-			const htmlAttrs = new Set([
-				"id", "class", "style", "slot", "hidden", "tabindex",
-				"aria-label", "aria-hidden", "aria-describedby", "aria-expanded",
-				"aria-controls", "aria-live", "aria-busy", "role",
-				"data-", "part",
-			]);
-
-			let attrMatch;
-			while ((attrMatch = attrPattern.exec(attrsStr)) !== null) {
-				const attr = attrMatch[1]!;
-				const attrLower = attr.toLowerCase();
-
-				// Skip common HTML/aria/data attributes and event handlers
-				if (
-					htmlAttrs.has(attrLower) ||
-					attrLower.startsWith("aria-") ||
-					attrLower.startsWith("data-") ||
-					attrLower.startsWith("on")
-				) {
-					continue;
-				}
-
-				if (!knownProps.has(attrLower)) {
-					const propNames = component.props.map((p) => p.name);
-					const suggestions = findClosest(attr, propNames, 2);
-					issues.push(
-						`<${tagName}>: Unknown attribute "${attr}". Did you mean: ${suggestions.join(", ")}?`,
-					);
-				}
-			}
-		}
-
-		if (issues.length === 0) {
+	async ({ html, file, glob: globPattern }) => {
+		if (!html && !file && !globPattern) {
 			return {
 				content: [
 					{
 						type: "text" as const,
-						text: "Markup is valid. All components and attributes are recognized.",
+						text: "Provide at least one of: html, file, or glob.",
+					},
+				],
+				isError: true,
+			};
+		}
+
+		const allIssues: string[] = [];
+		let filesChecked = 0;
+
+		// Inline HTML
+		if (html) {
+			allIssues.push(...validateSource(html));
+			filesChecked++;
+		}
+
+		// Single file
+		if (file) {
+			try {
+				const content = await Bun.file(file).text();
+				allIssues.push(...validateSource(content, file));
+				filesChecked++;
+			} catch {
+				allIssues.push(`Could not read file: ${file}`);
+			}
+		}
+
+		// Glob pattern
+		if (globPattern) {
+			const g = new Bun.Glob(globPattern);
+			for await (const path of g.scan({ dot: false })) {
+				try {
+					const content = await Bun.file(path).text();
+					const fileIssues = validateSource(content, path);
+					allIssues.push(...fileIssues);
+					filesChecked++;
+				} catch {
+					allIssues.push(`Could not read file: ${path}`);
+				}
+			}
+		}
+
+		if (allIssues.length === 0) {
+			return {
+				content: [
+					{
+						type: "text" as const,
+						text: `Validated ${filesChecked} source${filesChecked > 1 ? "s" : ""}. All components and attributes are recognized.`,
 					},
 				],
 			};
@@ -333,7 +435,7 @@ server.registerTool(
 			content: [
 				{
 					type: "text" as const,
-					text: `Found ${issues.length} issue${issues.length > 1 ? "s" : ""}:\n\n${issues.map((i, idx) => `${idx + 1}. ${i}`).join("\n")}`,
+					text: `Validated ${filesChecked} source${filesChecked > 1 ? "s" : ""}. Found ${allIssues.length} issue${allIssues.length > 1 ? "s" : ""}:\n\n${allIssues.map((i, idx) => `${idx + 1}. ${i}`).join("\n")}`,
 				},
 			],
 		};

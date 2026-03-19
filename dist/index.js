@@ -54089,70 +54089,144 @@ ${fuzzy.join(", ")}`);
     ]
   };
 });
-server.registerTool("validate_markup", {
-  title: "Validate Markup",
-  description: "Validate HTML markup against known Polaris Web Components. Checks for unknown components, unknown attributes, and suggests fixes.",
-  inputSchema: {
-    html: exports_external.string().describe("HTML markup containing Polaris Web Components (s-* tags) to validate")
+var GLOBAL_HTML_ATTRS = new Set([
+  "id",
+  "class",
+  "classname",
+  "style",
+  "slot",
+  "hidden",
+  "tabindex",
+  "aria-label",
+  "aria-hidden",
+  "aria-describedby",
+  "aria-expanded",
+  "aria-controls",
+  "aria-live",
+  "aria-busy",
+  "role",
+  "data-",
+  "part",
+  "key",
+  "ref",
+  "dangerouslysetinnerhtml"
+]);
+function stripJsxExpressions(source) {
+  let result = "";
+  let depth = 0;
+  let inString = null;
+  for (let i = 0;i < source.length; i++) {
+    const ch = source[i];
+    const prev = source[i - 1];
+    if (depth > 0 && !inString && (ch === '"' || ch === "'" || ch === "`")) {
+      inString = ch;
+    } else if (inString && ch === inString && prev !== "\\") {
+      inString = null;
+    }
+    if (!inString && ch === "{") {
+      if (depth === 0)
+        result += '"__jsx__"';
+      depth++;
+    } else if (!inString && ch === "}") {
+      depth--;
+    } else if (depth === 0) {
+      result += ch;
+    }
   }
-}, async ({ html }) => {
-  const tagPattern = /<(s-[\w-]+)([^>]*)>/g;
+  return result;
+}
+function validateSource(source, fileName) {
+  const cleaned = stripJsxExpressions(source);
+  const tagPattern = /<(s-[\w-]+)(\s[^>]*?)?\s*\/?>/g;
   const issues = [];
   const checked = new Set;
+  const prefix = fileName ? `${fileName}: ` : "";
   let match;
-  while ((match = tagPattern.exec(html)) !== null) {
+  while ((match = tagPattern.exec(cleaned)) !== null) {
     const tagName = match[1];
-    const attrsStr = match[2];
+    const attrsStr = match[2] ?? "";
     const component = components.find((c) => c.tagName === tagName);
     if (!component) {
       if (!checked.has(tagName)) {
         const allTags = components.map((c) => c.tagName);
         const suggestions = findClosest(tagName, allTags);
-        issues.push(`Unknown component <${tagName}>. Did you mean: ${suggestions.join(", ")}?`);
+        issues.push(`${prefix}Unknown component <${tagName}>. Did you mean: ${suggestions.join(", ")}?`);
         checked.add(tagName);
       }
       continue;
     }
-    const attrPattern = /\s([\w-]+)(?:=(?:"[^"]*"|'[^']*'|[^\s>]*))?/g;
+    const attrPattern = /\s([\w-]+)(?:=(?:"[^"]*"|'[^']*'|\{[^}]*\}|[^\s>]*))?/g;
     const knownProps = new Set(component.props.map((p) => p.name.toLowerCase()));
-    const htmlAttrs = new Set([
-      "id",
-      "class",
-      "style",
-      "slot",
-      "hidden",
-      "tabindex",
-      "aria-label",
-      "aria-hidden",
-      "aria-describedby",
-      "aria-expanded",
-      "aria-controls",
-      "aria-live",
-      "aria-busy",
-      "role",
-      "data-",
-      "part"
-    ]);
     let attrMatch;
     while ((attrMatch = attrPattern.exec(attrsStr)) !== null) {
       const attr = attrMatch[1];
       const attrLower = attr.toLowerCase();
-      if (htmlAttrs.has(attrLower) || attrLower.startsWith("aria-") || attrLower.startsWith("data-") || attrLower.startsWith("on")) {
+      if (GLOBAL_HTML_ATTRS.has(attrLower) || attrLower.startsWith("aria-") || attrLower.startsWith("data-") || attrLower.startsWith("on")) {
         continue;
       }
       if (!knownProps.has(attrLower)) {
         const propNames = component.props.map((p) => p.name);
         const suggestions = findClosest(attr, propNames, 2);
-        issues.push(`<${tagName}>: Unknown attribute "${attr}". Did you mean: ${suggestions.join(", ")}?`);
+        issues.push(`${prefix}<${tagName}>: Unknown attribute "${attr}". Did you mean: ${suggestions.join(", ")}?`);
       }
     }
   }
-  if (issues.length === 0) {
+  return issues;
+}
+server.registerTool("validate_markup", {
+  title: "Validate Markup",
+  description: "Validate HTML/JSX markup against known Polaris Web Components. Checks for unknown components, unknown attributes, and suggests fixes. Accepts inline markup, a file path, or a glob pattern to validate multiple files at once.",
+  inputSchema: {
+    html: exports_external.string().optional().describe("Inline HTML/JSX markup to validate"),
+    file: exports_external.string().optional().describe("Absolute file path to validate (e.g., '/path/to/app/routes/login.tsx')"),
+    glob: exports_external.string().optional().describe("Glob pattern to validate multiple files (e.g., 'src/**/*.tsx'). Paths are relative to the working directory.")
+  }
+}, async ({ html, file: file2, glob: globPattern }) => {
+  if (!html && !file2 && !globPattern) {
     return {
       content: [
         {
           type: "text",
-          text: "Markup is valid. All components and attributes are recognized."
+          text: "Provide at least one of: html, file, or glob."
+        }
+      ],
+      isError: true
+    };
+  }
+  const allIssues = [];
+  let filesChecked = 0;
+  if (html) {
+    allIssues.push(...validateSource(html));
+    filesChecked++;
+  }
+  if (file2) {
+    try {
+      const content = await Bun.file(file2).text();
+      allIssues.push(...validateSource(content, file2));
+      filesChecked++;
+    } catch {
+      allIssues.push(`Could not read file: ${file2}`);
+    }
+  }
+  if (globPattern) {
+    const g = new Bun.Glob(globPattern);
+    for await (const path of g.scan({ dot: false })) {
+      try {
+        const content = await Bun.file(path).text();
+        const fileIssues = validateSource(content, path);
+        allIssues.push(...fileIssues);
+        filesChecked++;
+      } catch {
+        allIssues.push(`Could not read file: ${path}`);
+      }
+    }
+  }
+  if (allIssues.length === 0) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Validated ${filesChecked} source${filesChecked > 1 ? "s" : ""}. All components and attributes are recognized.`
         }
       ]
     };
@@ -54161,9 +54235,9 @@ server.registerTool("validate_markup", {
     content: [
       {
         type: "text",
-        text: `Found ${issues.length} issue${issues.length > 1 ? "s" : ""}:
+        text: `Validated ${filesChecked} source${filesChecked > 1 ? "s" : ""}. Found ${allIssues.length} issue${allIssues.length > 1 ? "s" : ""}:
 
-${issues.map((i, idx) => `${idx + 1}. ${i}`).join(`
+${allIssues.map((i, idx) => `${idx + 1}. ${i}`).join(`
 `)}`
       }
     ]
