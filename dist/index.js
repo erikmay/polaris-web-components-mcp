@@ -29015,7 +29015,73 @@ Examples
 * Avoid unnecessary words and articles (e.g., "a", "an", "the")
 * Don't use punctuation
 * For icon-only buttons, use \`accessibilityLabel\` to describe the action
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "command",
+        type: "'--auto' | '--show' | '--hide' | '--toggle'",
+        default: "--auto"
+      },
+      {
+        name: "commandFor",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "download",
+        type: "string"
+      },
+      {
+        name: "href",
+        type: "string"
+      },
+      {
+        name: "icon",
+        type: "IconName"
+      },
+      {
+        name: "inlineSize",
+        type: '"auto" | "fill" | "fit-content"',
+        default: "auto"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "loading",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "target",
+        type: '"auto" | AnyString | "\\_blank" | "\\_self" | "\\_parent" | "\\_top"',
+        default: "auto"
+      },
+      {
+        name: "tone",
+        type: '"critical" | "auto" | "neutral"',
+        default: "auto"
+      },
+      {
+        name: "type",
+        type: '"button" | "reset" | "submit"',
+        default: "button"
+      },
+      {
+        name: "variant",
+        type: '"auto" | "primary" | "secondary" | "tertiary"',
+        default: "auto' - the variant is automatically determined by the Button's context"
+      }
+    ]
   },
   {
     name: "ButtonGroup",
@@ -29274,7 +29340,18 @@ Examples
 * Group together related calls to action
 * Avoid too many actions that may cause uncertainty
 * Consider how buttons will work on small screens
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "gap",
+        type: '"base" | "none"',
+        default: "base"
+      }
+    ]
   },
   {
     name: "Clickable",
@@ -29985,7 +30062,167 @@ Examples
     <s-text>Unavailable feature</s-text>
   </s-clickable>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "accessibilityRole",
+        type: "AccessibilityRole",
+        default: "generic"
+      },
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "background",
+        type: "BackgroundColorKeyword",
+        default: "transparent"
+      },
+      {
+        name: "blockSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "border",
+        type: "BorderShorthand",
+        default: "none' - equivalent to \\`none base auto\\`."
+      },
+      {
+        name: "borderColor",
+        type: '"" | ColorKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderRadius",
+        type: "MaybeAllValuesShorthandProperty\\<BoxBorderRadii>",
+        default: "none"
+      },
+      {
+        name: "borderStyle",
+        type: '"" | MaybeAllValuesShorthandProperty\\<BoxBorderStyles>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderWidth",
+        type: '"" | MaybeAllValuesShorthandProperty<"small" | "small-100" | "base" | "large" | "large-100" | "no...',
+        default: "' - meaning no override"
+      },
+      {
+        name: "command",
+        type: "'--auto' | '--show' | '--hide' | '--toggle'",
+        default: "--auto"
+      },
+      {
+        name: "commandFor",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean"
+      },
+      {
+        name: "display",
+        type: 'MaybeResponsive<"auto" | "none">',
+        default: "auto"
+      },
+      {
+        name: "download",
+        type: "string"
+      },
+      {
+        name: "href",
+        type: "string"
+      },
+      {
+        name: "inlineSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "loading",
+        type: "boolean"
+      },
+      {
+        name: "maxBlockSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "maxInlineSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "minBlockSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "minInlineSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "overflow",
+        type: '"visible" | "hidden"',
+        default: "visible"
+      },
+      {
+        name: "padding",
+        type: "MaybeResponsive\\<MaybeAllValuesShorthandProperty\\<PaddingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "paddingBlock",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInline",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "target",
+        type: '"auto" | AnyString | "\\_blank" | "\\_self" | "\\_parent" | "\\_top"',
+        default: "auto"
+      },
+      {
+        name: "type",
+        type: '"button" | "reset" | "submit"',
+        default: "button"
+      }
+    ]
   },
   {
     name: "ClickableChip",
@@ -30370,7 +30607,50 @@ Examples
 * Keep labels short to avoid truncation
 * Use color variants to indicate importance (subdued, base, strong)
 * Add icons to provide visual context
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "color",
+        type: "ColorKeyword",
+        default: "base"
+      },
+      {
+        name: "command",
+        type: "'--auto' | '--show' | '--hide' | '--toggle'",
+        default: "--auto"
+      },
+      {
+        name: "commandFor",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "hidden",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "href",
+        type: "string"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "removable",
+        type: "boolean",
+        default: "false"
+      }
+    ]
   },
   {
     name: "Link",
@@ -30834,7 +31114,48 @@ Examples
 * Use links for navigation and buttons for actions
 * Use default links whenever possible to avoid disorienting merchants
 * Open external links in a new tab only when merchants are performing a task or navigating outside the Shopify admin
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "command",
+        type: "'--auto' | '--show' | '--hide' | '--toggle'",
+        default: "--auto"
+      },
+      {
+        name: "commandFor",
+        type: "string"
+      },
+      {
+        name: "download",
+        type: "string"
+      },
+      {
+        name: "href",
+        type: "string"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "lang",
+        type: "string"
+      },
+      {
+        name: "target",
+        type: '"auto" | AnyString | "\\_blank" | "\\_self" | "\\_parent" | "\\_top"',
+        default: "auto"
+      },
+      {
+        name: "tone",
+        type: '"critical" | "auto" | "neutral"',
+        default: "auto"
+      }
+    ]
   },
   {
     name: "Menu",
@@ -31173,7 +31494,13 @@ Examples
 * Each item should be clear and predictable
 * Lead with a strong verb using the {verb}+{noun} format (e.g., "Buy shipping label", "Edit HTML")
 * Avoid unnecessary words and articles like "the", "an", or "a"
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Badge",
@@ -31449,7 +31776,28 @@ Badge labels should:
 
 * Use 1-2 words maximum: \`Fulfilled\`, \`Partially refunded\`
 * Always use past tense: \`Refunded\` not \`Refund\`
-`
+`,
+    props: [
+      {
+        name: "color",
+        type: '"base" | "strong"',
+        default: "base"
+      },
+      {
+        name: "icon",
+        type: "IconName"
+      },
+      {
+        name: "size",
+        type: '"base" | "large" | "large-100"',
+        default: "base"
+      },
+      {
+        name: "tone",
+        type: '"info" | "success" | "warning" | "critical" | "auto" | "neutral" | "caution"',
+        default: "auto"
+      }
+    ]
   },
   {
     name: "Banner",
@@ -31808,7 +32156,29 @@ Banners placed inside a section will have styles applied contextually. They're u
 * Use action-led buttons with strong verbs (e.g., "Activate Apple Pay" not "Try Apple Pay")
 * Avoid unnecessary words and articles in button text
 * For warning and critical banners, explain how to resolve the issue
-`
+`,
+    props: [
+      {
+        name: "dismissible",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "heading",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "hidden",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "tone",
+        type: '"info" | "success" | "warning" | "critical" | "auto"',
+        default: "auto"
+      }
+    ]
   },
   {
     name: "Spinner",
@@ -31937,7 +32307,18 @@ Examples
 
 * Use to notify merchants that their action is being processed
 * Don't use for entire page loads
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "size",
+        type: '"base" | "large" | "large-100"',
+        default: "base"
+      }
+    ]
   },
   {
     name: "Checkbox",
@@ -32291,7 +32672,66 @@ Examples
 * Start each option with a capital letter
 * Don't use commas or semicolons at the end of each line
 * Use first person when asking merchants to agree to terms (e.g., "I agree to the Terms of Service")
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "checked",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "defaultIndeterminate",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "indeterminate",
+        type: "boolean"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "ChoiceList",
@@ -32721,7 +33161,44 @@ Examples
 * End titles with a colon if they introduce the list
 * Start each choice with a capital letter
 * Don't use commas or semicolons at the end of lines
-`
+`,
+    props: [
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "multiple",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "values",
+        type: "string\\[]"
+      }
+    ]
   },
   {
     name: "ColorField",
@@ -33209,7 +33686,71 @@ Examples
 * Provide clear labels that indicate what the color will be used for
 * Use details text to provide context about the color's purpose
 * Validate color format inputs and provide clear error messages
-`
+`,
+    props: [
+      {
+        name: "alpha",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "autocomplete",
+        type: '"on" | "off"',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "ColorPicker",
@@ -33369,7 +33910,30 @@ Examples
 ## Best practices
 
 * Use the alpha slider if you want to allow merchants to select a transparent color
-`
+`,
+    props: [
+      {
+        name: "alpha",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "formResetCallback",
+        type: "() => void"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "DateField",
@@ -34083,7 +34647,94 @@ Examples
 * Use \`allow\` and \`disallow\` properties to restrict selectable dates appropriately
 * Provide clear labels and use details text to explain date restrictions
 * Don't use for dates that are many years in the future or the past
-`
+`,
+    props: [
+      {
+        name: "allow",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "allowDays",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "autocomplete",
+        type: "DateAutocompleteField",
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "defaultView",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "disallow",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "disallowDays",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      },
+      {
+        name: "view",
+        type: "string"
+      }
+    ]
   },
   {
     name: "DatePicker",
@@ -34534,7 +35185,56 @@ Examples
 
 * Use smart defaults and highlight common selections
 * Don't use to enter a date that is many years in the future or the past
-`
+`,
+    props: [
+      {
+        name: "allow",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "allowDays",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "defaultView",
+        type: "string"
+      },
+      {
+        name: "disallow",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "disallowDays",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "type",
+        type: '"single" | "range"',
+        default: '"single"'
+      },
+      {
+        name: "value",
+        type: "string",
+        default: '""'
+      },
+      {
+        name: "view",
+        type: "string"
+      }
+    ]
   },
   {
     name: "DropZone",
@@ -34865,7 +35565,60 @@ Examples
     multiple
   ></s-drop-zone>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "accept",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "files",
+        type: "File\\[]",
+        default: "\\[]"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "multiple",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string",
+        default: ""
+      }
+    ]
   },
   {
     name: "EmailField",
@@ -35250,7 +36003,76 @@ Examples
     </s-section>
   )
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | EmailAutocompleteField | \\`section-${string} email\\` | \\`section-${string} home em...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "MoneyField",
@@ -35643,7 +36465,76 @@ Examples
     </s-section>
   )
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: "string",
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "-Infinity"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "NumberField",
@@ -36044,7 +36935,96 @@ Examples
     ></s-number-field>
   </s-stack>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | NumberAutocompleteField | \\`section-${string} one-time-code\\` | \\`section-${string...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "inputMode",
+        type: '"decimal" | "numeric"',
+        default: "decimal"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "-Infinity"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "prefix",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "step",
+        type: "number",
+        default: "1"
+      },
+      {
+        name: "suffix",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "PasswordField",
@@ -36433,7 +37413,76 @@ Examples
     </s-stack>
   </s-stack>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | PasswordAutocompleteField | \\`section-${string} current-password\\` | \\`section-${s...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "SearchField",
@@ -36760,7 +37809,76 @@ Examples
 ## Best practices
 
 * The SearchField automatically includes a clear button when text is entered, so you should not create your own clear button
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | TextAutocompleteField | \\`section-${string} one-time-code\\` | "shipping one-time-c...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Select",
@@ -37215,7 +38333,56 @@ Examples
     <s-option value="gift-card">Gift card</s-option>
   </s-select>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "icon",
+        type: "IconName"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Switch",
@@ -37588,7 +38755,62 @@ Examples
     ></s-switch>
   </s-stack>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "checked",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "TextArea",
@@ -37924,7 +39146,81 @@ Examples
     autocomplete="off"
   ></s-text-area>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | TextAutocompleteField | \\`section-${string} one-time-code\\` | "shipping one-time-c...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "rows",
+        type: "number",
+        default: "2"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "TextField",
@@ -38357,7 +39653,91 @@ Examples
     <s-icon slot="accessory" interestFor="info-tooltip" type="info" />
   </s-text-field>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | TextAutocompleteField | \\`section-${string} one-time-code\\` | "shipping one-time-c...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "icon",
+        type: '"replace" | "search" | "split" | "link" | "edit" | "product" | "variant" | "collection" | "select...',
+        default: ""
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "prefix",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "suffix",
+        type: "string",
+        default: ""
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "URLField",
@@ -38679,7 +40059,76 @@ Examples
     disabled
   ></s-url-field>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "autocomplete",
+        type: '"on" | "off" | \\`section-${string} url\\` | \\`section-${string} photo\\` | \\`section-${string} impp...',
+        default: "on' for everything else"
+      },
+      {
+        name: "defaultValue",
+        type: "string"
+      },
+      {
+        name: "details",
+        type: "string"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "error",
+        type: "string"
+      },
+      {
+        name: "id",
+        type: "string"
+      },
+      {
+        name: "label",
+        type: "string"
+      },
+      {
+        name: "labelAccessibilityVisibility",
+        type: '"visible" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "maxLength",
+        type: "number",
+        default: "Infinity"
+      },
+      {
+        name: "minLength",
+        type: "number",
+        default: "0"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "placeholder",
+        type: "string"
+      },
+      {
+        name: "readOnly",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "value",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Box",
@@ -39306,7 +40755,128 @@ Examples
 
 * Use for structural layouts with consistent spacing patterns
 * Avoid adding too many borders that may visually fragment the interface
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "accessibilityRole",
+        type: "AccessibilityRole",
+        default: "generic"
+      },
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "background",
+        type: "BackgroundColorKeyword",
+        default: "transparent"
+      },
+      {
+        name: "blockSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "border",
+        type: "BorderShorthand",
+        default: "none' - equivalent to \\`none base auto\\`."
+      },
+      {
+        name: "borderColor",
+        type: '"" | ColorKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderRadius",
+        type: "MaybeAllValuesShorthandProperty\\<BoxBorderRadii>",
+        default: "none"
+      },
+      {
+        name: "borderStyle",
+        type: '"" | MaybeAllValuesShorthandProperty\\<BoxBorderStyles>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderWidth",
+        type: '"" | MaybeAllValuesShorthandProperty<"small" | "small-100" | "base" | "large" | "large-100" | "no...',
+        default: "' - meaning no override"
+      },
+      {
+        name: "display",
+        type: 'MaybeResponsive<"auto" | "none">',
+        default: "auto"
+      },
+      {
+        name: "inlineSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "maxBlockSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "maxInlineSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "minBlockSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "minInlineSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "overflow",
+        type: '"visible" | "hidden"',
+        default: "visible"
+      },
+      {
+        name: "padding",
+        type: "MaybeResponsive\\<MaybeAllValuesShorthandProperty\\<PaddingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "paddingBlock",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInline",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      }
+    ]
   },
   {
     name: "Divider",
@@ -39577,7 +41147,19 @@ Examples
 
 * Separating elements inside sections.
 * Visually grouping related content in forms and lists.
-`
+`,
+    props: [
+      {
+        name: "color",
+        type: '"base" | "strong"',
+        default: "base"
+      },
+      {
+        name: "direction",
+        type: '"inline" | "block"',
+        default: "inline"
+      }
+    ]
   },
   {
     name: "Grid",
@@ -40832,7 +42414,183 @@ Examples
 * Grid doesn't include any padding by default. If you need padding around your grid, use \`base\` to apply the default padding.
 * Grid will allow children to overflow unless template rows/columns are properly set.
 * Grid will always wrap children to a new line. If you need to control the wrapping behavior, use \`s-stack\` or \`s-box\`.
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "accessibilityRole",
+        type: "AccessibilityRole",
+        default: "generic"
+      },
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "alignContent",
+        type: '"" | AlignContentKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "alignItems",
+        type: '"" | AlignItemsKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "background",
+        type: "BackgroundColorKeyword",
+        default: "transparent"
+      },
+      {
+        name: "blockSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "border",
+        type: "BorderShorthand",
+        default: "none' - equivalent to \\`none base auto\\`."
+      },
+      {
+        name: "borderColor",
+        type: '"" | ColorKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderRadius",
+        type: "MaybeAllValuesShorthandProperty\\<BoxBorderRadii>",
+        default: "none"
+      },
+      {
+        name: "borderStyle",
+        type: '"" | MaybeAllValuesShorthandProperty\\<BoxBorderStyles>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderWidth",
+        type: '"" | MaybeAllValuesShorthandProperty<"small" | "small-100" | "base" | "large" | "large-100" | "no...',
+        default: "' - meaning no override"
+      },
+      {
+        name: "columnGap",
+        type: 'MaybeResponsive<"" | SpacingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "display",
+        type: 'MaybeResponsive<"auto" | "none">',
+        default: "auto"
+      },
+      {
+        name: "gap",
+        type: "MaybeResponsive\\<MaybeTwoValuesShorthandProperty\\<SpacingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "gridTemplateColumns",
+        type: "string",
+        default: "none"
+      },
+      {
+        name: "gridTemplateRows",
+        type: "string",
+        default: "none"
+      },
+      {
+        name: "inlineSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "justifyContent",
+        type: '"" | JustifyContentKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "justifyItems",
+        type: '"" | JustifyItemsKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "maxBlockSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "maxInlineSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "minBlockSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "minInlineSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "overflow",
+        type: '"visible" | "hidden"',
+        default: "visible"
+      },
+      {
+        name: "padding",
+        type: "MaybeResponsive\\<MaybeAllValuesShorthandProperty\\<PaddingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "paddingBlock",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInline",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "placeContent",
+        type: '"normal normal" | "normal stretch" | "normal start" | "normal end" | "normal center" | "normal un...',
+        default: "normal normal"
+      },
+      {
+        name: "placeItems",
+        type: 'AlignItemsKeyword | "normal normal" | "normal stretch" | "normal baseline" | "normal first baseli...',
+        default: "normal normal"
+      },
+      {
+        name: "rowGap",
+        type: 'MaybeResponsive<"" | SpacingKeyword>',
+        default: "' - meaning no override"
+      }
+    ]
   },
   {
     name: "OrderedList",
@@ -41064,7 +42822,13 @@ Examples
 * Phrase items consistently (start each with a noun or verb)
 * Start each item with a capital letter
 * Don't use commas or semicolons at the end of lines
-`
+`,
+    props: [
+      {
+        name: "children",
+        type: "HTMLElement"
+      }
+    ]
   },
   {
     name: "QueryContainer",
@@ -41193,7 +42957,14 @@ Examples
     </s-query-container>
   </s-box>
   \`\`\`
-`
+`,
+    props: [
+      {
+        name: "containerName",
+        type: "string",
+        default: ""
+      }
+    ]
   },
   {
     name: "Section",
@@ -41468,7 +43239,22 @@ Examples
 * Built-in spacing is added between nested sections, as well as between heading and content.
 * **Level 1:** Display as responsive cards with background color, rounded corners, and shadow effects. Includes outer padding that can be removed when content like \`s-table\` needs to expand to the full width of the section.
 * **Nested sections:** Don't have any background color or effects by default.
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "heading",
+        type: "string"
+      },
+      {
+        name: "padding",
+        type: '"base" | "none"',
+        default: "base"
+      }
+    ]
   },
   {
     name: "Stack",
@@ -42225,7 +44011,163 @@ Examples
 
 * Use smaller gaps between small elements and larger gaps between big ones.
 * Maintain consistent spacing in stacks across all pages of your app.
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "accessibilityRole",
+        type: "AccessibilityRole",
+        default: "generic"
+      },
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "alignContent",
+        type: "AlignContentKeyword",
+        default: "normal"
+      },
+      {
+        name: "alignItems",
+        type: "AlignItemsKeyword",
+        default: "normal"
+      },
+      {
+        name: "background",
+        type: "BackgroundColorKeyword",
+        default: "transparent"
+      },
+      {
+        name: "blockSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "border",
+        type: "BorderShorthand",
+        default: "none' - equivalent to \\`none base auto\\`."
+      },
+      {
+        name: "borderColor",
+        type: '"" | ColorKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderRadius",
+        type: "MaybeAllValuesShorthandProperty\\<BoxBorderRadii>",
+        default: "none"
+      },
+      {
+        name: "borderStyle",
+        type: '"" | MaybeAllValuesShorthandProperty\\<BoxBorderStyles>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderWidth",
+        type: '"" | MaybeAllValuesShorthandProperty<"small" | "small-100" | "base" | "large" | "large-100" | "no...',
+        default: "' - meaning no override"
+      },
+      {
+        name: "columnGap",
+        type: 'MaybeResponsive<"" | SpacingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "direction",
+        type: 'MaybeResponsive<"inline" | "block">',
+        default: "block"
+      },
+      {
+        name: "display",
+        type: 'MaybeResponsive<"auto" | "none">',
+        default: "auto"
+      },
+      {
+        name: "gap",
+        type: "MaybeResponsive\\<MaybeTwoValuesShorthandProperty\\<SpacingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "inlineSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "justifyContent",
+        type: "JustifyContentKeyword",
+        default: "normal"
+      },
+      {
+        name: "maxBlockSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "maxInlineSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "minBlockSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "minInlineSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "overflow",
+        type: '"visible" | "hidden"',
+        default: "visible"
+      },
+      {
+        name: "padding",
+        type: "MaybeResponsive\\<MaybeAllValuesShorthandProperty\\<PaddingKeyword>>",
+        default: "none"
+      },
+      {
+        name: "paddingBlock",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingBlockStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInline",
+        type: 'MaybeResponsive<"" | MaybeTwoValuesShorthandProperty\\<PaddingKeyword>>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineEnd",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "paddingInlineStart",
+        type: 'MaybeResponsive<"" | PaddingKeyword>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "rowGap",
+        type: 'MaybeResponsive<"" | SpacingKeyword>',
+        default: "' - meaning no override"
+      }
+    ]
   },
   {
     name: "Table",
@@ -43039,7 +44981,34 @@ Examples
 ## Related
 
 [Composition - Index table](https://shopify.dev/docs/api/app-home/patterns/compositions/index-table)
-`
+`,
+    props: [
+      {
+        name: "hasNextPage",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "hasPreviousPage",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "loading",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "paginate",
+        type: "boolean",
+        default: "false"
+      },
+      {
+        name: "variant",
+        type: '"auto" | "list"',
+        default: "auto"
+      }
+    ]
   },
   {
     name: "UnorderedList",
@@ -43182,7 +45151,13 @@ Examples
 * Phrase items consistently (start each with a noun or verb)
 * Start each item with a capital letter
 * Don't use commas or semicolons at the end of lines
-`
+`,
+    props: [
+      {
+        name: "children",
+        type: "HTMLElement"
+      }
+    ]
   },
   {
     name: "Avatar",
@@ -43673,7 +45648,26 @@ For avatars, we recommend using a format that describes what will show in the im
 * alt="Person's name" if avatar represents a person
 * alt="Business's name" if avatar represents a business
 * alt="" if the name appears next to the avatar as text
-`
+`,
+    props: [
+      {
+        name: "alt",
+        type: "string"
+      },
+      {
+        name: "initials",
+        type: "string"
+      },
+      {
+        name: "size",
+        type: '"small" | "small-200" | "base" | "large" | "large-200"',
+        default: "base"
+      },
+      {
+        name: "src",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Icon",
@@ -43978,7 +45972,32 @@ Icons should:
 * Use the same icon consistently for the same meaning
 * Appear next to related text labels
 * Only be used when their meaning is clear
-`
+`,
+    props: [
+      {
+        name: "color",
+        type: '"base" | "subdued"',
+        default: "base"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "size",
+        type: '"small" | "base"',
+        default: "base"
+      },
+      {
+        name: "tone",
+        type: '"info" | "success" | "warning" | "critical" | "auto" | "neutral" | "caution"',
+        default: "auto"
+      },
+      {
+        name: "type",
+        type: '"" | "replace" | "search" | "split" | "link" | "edit" | "product" | "variant" | "collection" | "s...'
+      }
+    ]
   },
   {
     name: "Image",
@@ -44505,7 +46524,76 @@ Alt text should be accurate, concise, and descriptive:
 
 * Indicate it's an image: "Image of", "Photo of"
 * Focus on description: "Image of a woman with curly brown hair smiling"
-`
+`,
+    props: [
+      {
+        name: "accessibilityRole",
+        type: '"none" | "presentation" | "img"',
+        default: "img"
+      },
+      {
+        name: "alt",
+        type: "string",
+        default: "\\`''\\`"
+      },
+      {
+        name: "aspectRatio",
+        type: "\\`${number}\\` | \\`${number}/${number}\\` | \\`${number}/ ${number}\\` | \\`${number} /${number}\\` | \\...",
+        default: "1/1"
+      },
+      {
+        name: "border",
+        type: "BorderShorthand",
+        default: "none' - equivalent to \\`none base auto\\`."
+      },
+      {
+        name: "borderColor",
+        type: '"" | ColorKeyword',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderRadius",
+        type: "MaybeAllValuesShorthandProperty\\<BoxBorderRadii>",
+        default: "none"
+      },
+      {
+        name: "borderStyle",
+        type: '"" | MaybeAllValuesShorthandProperty\\<BoxBorderStyles>',
+        default: "' - meaning no override"
+      },
+      {
+        name: "borderWidth",
+        type: '"" | MaybeAllValuesShorthandProperty<"small" | "small-100" | "base" | "large" | "large-100" | "no...',
+        default: "' - meaning no override"
+      },
+      {
+        name: "inlineSize",
+        type: '"auto" | "fill"',
+        default: "fill"
+      },
+      {
+        name: "loading",
+        type: '"eager" | "lazy"',
+        default: "eager"
+      },
+      {
+        name: "objectFit",
+        type: '"contain" | "cover"',
+        default: "contain"
+      },
+      {
+        name: "sizes",
+        type: "string"
+      },
+      {
+        name: "src",
+        type: "string"
+      },
+      {
+        name: "srcSet",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Thumbnail",
@@ -44759,7 +46847,23 @@ Alternative text should be accurate, concise, and descriptive:
 * Use "Image of", "Photo of" prefix
 * Be primary visual content: "Image of a woman with curly brown hair smiling"
 * Include relevant emotions: "Image of a woman laughing with her hand on her face"
-`
+`,
+    props: [
+      {
+        name: "alt",
+        type: "string",
+        default: "\\`''\\`"
+      },
+      {
+        name: "size",
+        type: '"small" | "small-200" | "small-100" | "base" | "large" | "large-100"',
+        default: "base"
+      },
+      {
+        name: "src",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Modal",
@@ -45407,7 +47511,39 @@ Modals are closed by default and should be triggered by a button using the \`com
 * Keep body content to 1-2 short sentences
 * For destructive actions, explain the consequences
 * Use clear action verbs for buttons (e.g., "Delete", "Edit") instead of vague language like "Yes" or "OK"
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "heading",
+        type: "string"
+      },
+      {
+        name: "hideOverlay",
+        type: "() => void"
+      },
+      {
+        name: "padding",
+        type: '"base" | "none"',
+        default: "base"
+      },
+      {
+        name: "showOverlay",
+        type: "() => void"
+      },
+      {
+        name: "size",
+        type: '"small" | "small-100" | "base" | "large" | "large-100"',
+        default: "base"
+      },
+      {
+        name: "toggleOverlay",
+        type: "() => void"
+      }
+    ]
   },
   {
     name: "Popover",
@@ -45834,7 +47970,39 @@ Popovers are closed by default and should be triggered by a button using the \`c
 
 * Use clear action verbs in the {verb}+{noun} format (e.g., "Create order", "Edit HTML")
 * Avoid unnecessary words like "the", "an", or "a"
-`
+`,
+    props: [
+      {
+        name: "blockSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "inlineSize",
+        type: "SizeUnitsOrAuto",
+        default: "auto"
+      },
+      {
+        name: "maxBlockSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "maxInlineSize",
+        type: "SizeUnitsOrNone",
+        default: "none"
+      },
+      {
+        name: "minBlockSize",
+        type: "SizeUnits",
+        default: "0"
+      },
+      {
+        name: "minInlineSize",
+        type: "SizeUnits",
+        default: "0"
+      }
+    ]
   },
   {
     name: "Page",
@@ -46161,7 +48329,18 @@ Examples
 * Don't include punctuation like periods or exclamation marks
 * Page titles should clearly communicate the page purpose
 * Page actions should use a verb or verb + noun phrase (e.g., "Create store", "Edit product")
-`
+`,
+    props: [
+      {
+        name: "heading",
+        type: "string"
+      },
+      {
+        name: "inlineSize",
+        type: '"small" | "base" | "large"',
+        default: "base"
+      }
+    ]
   },
   {
     name: "Chip",
@@ -46430,7 +48609,18 @@ Chip labels should:
 * Use \`accessibilityLabel\` to describe purpose for screen readers
 * Common status labels: \`Active\`, \`Draft\`, \`Published\`, \`Verified\`
 * Common category labels: \`Product type\`, \`Collection\`, \`Tag name\`
-`
+`,
+    props: [
+      {
+        name: "accessibilityLabel",
+        type: "string"
+      },
+      {
+        name: "color",
+        type: "ColorKeyword",
+        default: "base"
+      }
+    ]
   },
   {
     name: "Heading",
@@ -46639,7 +48829,24 @@ Examples
 * Don't use jargon or technical language.
 * Don't use different terms to describe the same thing.
 * Don't duplicate content.
-`
+`,
+    props: [
+      {
+        name: "accessibilityRole",
+        type: '"none" | "presentation" | "heading"',
+        default: "heading"
+      },
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "lineClamp",
+        type: "number",
+        default: "Infinity - no truncation is applied"
+      }
+    ]
   },
   {
     name: "Paragraph",
@@ -46980,7 +49187,39 @@ Examples
 * Don't use jargon or technical language.
 * Don't use different terms to describe the same thing.
 * Don't duplicate content.
-`
+`,
+    props: [
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "color",
+        type: '"base" | "subdued"',
+        default: "base"
+      },
+      {
+        name: "dir",
+        type: '"" | "auto" | "ltr" | "rtl"',
+        default: ""
+      },
+      {
+        name: "fontVariantNumeric",
+        type: '"auto" | "normal" | "tabular-nums"',
+        default: "auto' - inherit from the parent element"
+      },
+      {
+        name: "lineClamp",
+        type: "number",
+        default: "Infinity - no truncation is applied"
+      },
+      {
+        name: "tone",
+        type: '"info" | "success" | "warning" | "critical" | "auto" | "neutral" | "caution"',
+        default: "auto"
+      }
+    ]
   },
   {
     name: "Text",
@@ -47327,7 +49566,43 @@ Examples
 * Don't use jargon or technical language.
 * Don't use different terms to describe the same thing.
 * Don't duplicate content.
-`
+`,
+    props: [
+      {
+        name: "accessibilityVisibility",
+        type: '"visible" | "hidden" | "exclusive"',
+        default: "visible"
+      },
+      {
+        name: "color",
+        type: '"base" | "subdued"',
+        default: "base"
+      },
+      {
+        name: "dir",
+        type: '"" | "auto" | "ltr" | "rtl"',
+        default: ""
+      },
+      {
+        name: "fontVariantNumeric",
+        type: '"auto" | "normal" | "tabular-nums"',
+        default: "auto' - inherit from the parent element"
+      },
+      {
+        name: "interestFor",
+        type: "string"
+      },
+      {
+        name: "tone",
+        type: '"info" | "success" | "warning" | "critical" | "auto" | "neutral" | "caution"',
+        default: "auto"
+      },
+      {
+        name: "type",
+        type: '"strong" | "generic" | "address" | "redundant"',
+        default: "generic"
+      }
+    ]
   },
   {
     name: "Tooltip",
@@ -47465,7 +49740,13 @@ Tooltips only render on devices with a pointer and do not display on mobile devi
 * Don't use for critical information, errors, or blocking messages
 * Don't contain any links or buttons
 * Use sparingly. If you need many tooltips, clarify the design and language instead
-`
+`,
+    props: [
+      {
+        name: "children",
+        type: "HTMLElement"
+      }
+    ]
   }
 ];
 
@@ -48033,6 +50314,127 @@ var icons_default = [
   "x-circle-filled"
 ];
 
+// src/fuzzy.ts
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0;i <= m; i++)
+    dp[i][0] = i;
+  for (let j = 0;j <= n; j++)
+    dp[0][j] = j;
+  for (let i = 1;i <= m; i++) {
+    for (let j = 1;j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    }
+  }
+  return dp[m][n];
+}
+var ICON_SYNONYMS = {
+  warning: ["alert"],
+  error: ["alert"],
+  danger: ["alert"],
+  shop: ["store"],
+  merchant: ["store"],
+  retry: ["refresh"],
+  reload: ["refresh"],
+  rotate: ["refresh"],
+  login: ["lock", "key", "passkey", "person"],
+  auth: ["lock", "key", "passkey", "shield"],
+  password: ["lock", "key", "passkey"],
+  close: ["x"],
+  remove: ["delete", "x"],
+  trash: ["delete"],
+  search: ["magnifying-glass"],
+  find: ["magnifying-glass"],
+  settings: ["gear"],
+  config: ["gear"],
+  home: ["house"],
+  money: ["cash", "payment", "credit-card"],
+  copy: ["clipboard"],
+  paste: ["clipboard"],
+  user: ["person"],
+  account: ["person"],
+  profile: ["person"],
+  mail: ["email", "envelope"],
+  notification: ["bell", "alert"],
+  info: ["info", "question-circle"],
+  help: ["question-circle"],
+  expand: ["chevron", "arrow"],
+  collapse: ["chevron", "arrow"],
+  dropdown: ["chevron-down", "caret-down"],
+  upload: ["upload", "arrow-up"],
+  download: ["download", "arrow-down"],
+  save: ["floppy-disk"],
+  edit: ["edit", "pen"],
+  write: ["edit", "pen"],
+  time: ["clock"],
+  schedule: ["clock", "calendar"],
+  image: ["image", "camera"],
+  photo: ["image", "camera"],
+  link: ["link"],
+  external: ["external", "arrow-up-right"],
+  sort: ["sort", "arrow-up", "arrow-down"],
+  filter: ["filter"],
+  attach: ["attachment", "paperclip"],
+  pin: ["pin"],
+  star: ["star", "favorite"],
+  favourite: ["star", "favorite"],
+  favorite: ["star", "favorite"],
+  like: ["heart", "thumbs-up"],
+  share: ["share"],
+  print: ["print"],
+  eye: ["eye", "view"],
+  visible: ["eye", "view"],
+  hidden: ["eye-slash", "hide"],
+  invisible: ["eye-slash", "hide"]
+};
+function searchIcons(icons, query) {
+  const words = query.toLowerCase().split(/\s+/).filter((w) => w.length > 0);
+  if (words.length === 0)
+    return { exact: icons, fuzzy: [] };
+  const expandedWords = new Set;
+  for (const word of words) {
+    expandedWords.add(word);
+    const synonyms = ICON_SYNONYMS[word];
+    if (synonyms) {
+      for (const syn of synonyms)
+        expandedWords.add(syn);
+    }
+  }
+  const exact = new Set;
+  for (const icon of icons) {
+    for (const word of expandedWords) {
+      if (icon.includes(word)) {
+        exact.add(icon);
+        break;
+      }
+    }
+  }
+  const fuzzy = new Set;
+  if (exact.size === 0) {
+    for (const icon of icons) {
+      const segments = icon.split("-");
+      for (const word of words) {
+        for (const segment of segments) {
+          if (word.length >= 3 && levenshtein(word, segment) <= 2) {
+            fuzzy.add(icon);
+            break;
+          }
+        }
+      }
+    }
+  }
+  return {
+    exact: [...exact].sort(),
+    fuzzy: [...fuzzy].filter((i) => !exact.has(i)).sort()
+  };
+}
+function findClosest(input, candidates, maxResults = 3) {
+  const scored = candidates.map((c) => ({ value: c, dist: levenshtein(input.toLowerCase(), c.toLowerCase()) })).sort((a, b) => a.dist - b.dist);
+  return scored.slice(0, maxResults).map((s) => s.value);
+}
+
 // src/index.ts
 var components = components_default;
 var icons = icons_default;
@@ -48041,29 +50443,43 @@ function findComponent(name) {
   const lower = name.toLowerCase().replace(/^s-/, "");
   return components.find((c) => c.name.toLowerCase() === lower || c.tagName.toLowerCase() === `s-${lower}` || c.tagName.toLowerCase() === name.toLowerCase());
 }
+function componentNotFoundMessage(name) {
+  const allNames = components.flatMap((c) => [c.tagName, c.name]);
+  const suggestions = findClosest(name, allNames);
+  const suggestionText = suggestions.length ? `
+
+Did you mean: ${suggestions.join(", ")}?` : "";
+  return `Component "${name}" not found. Use list_components to see available components.${suggestionText}`;
+}
 var server = new McpServer({
   name: "polaris-web-components",
   version: "1.0.0"
 });
 server.registerTool("list_components", {
   title: "List Components",
-  description: "List all available Shopify Polaris Web Components, optionally filtered by category.",
+  description: "List all available Shopify Polaris Web Components with their properties. Start here to decide which components you need, then use get_component for full documentation on specific ones.",
   inputSchema: {
-    category: exports_external.string().optional().describe("Filter by category (e.g., 'Actions', 'Forms', 'Layout', 'Media', 'Overlays', 'Typography', 'Structure', 'Feedback and Status')")
+    category: exports_external.string().optional().describe("Filter by category (e.g., 'Actions', 'Forms', 'Layout', 'Media', 'Overlays', 'Typography', 'Structure', 'Feedback and Status')"),
+    detail: exports_external.enum(["summary", "props"]).optional().default("summary").describe("Level of detail: 'summary' returns names and descriptions, 'props' also includes property names with types and defaults")
   }
-}, async ({ category }) => {
+}, async ({ category, detail }) => {
   let filtered = components;
   if (category) {
     const lower = category.toLowerCase();
     filtered = components.filter((c) => c.category.toLowerCase().includes(lower));
   }
-  const list = filtered.map((c) => ({
-    name: c.name,
-    tagName: c.tagName,
-    category: c.category,
-    description: c.description,
-    url: c.url
-  }));
+  const list = filtered.map((c) => {
+    const base = {
+      name: c.name,
+      tagName: c.tagName,
+      category: c.category,
+      description: c.description
+    };
+    if (detail === "props") {
+      return { ...base, props: c.props };
+    }
+    return base;
+  });
   return {
     content: [
       {
@@ -48075,30 +50491,35 @@ server.registerTool("list_components", {
 });
 server.registerTool("get_component", {
   title: "Get Component",
-  description: "Get the full Shopify documentation for a Polaris Web Component including properties, events, slots, examples, and usage guidelines. Accepts component name (e.g., 'Button') or tag name (e.g., 's-button').",
+  description: "Get the full Shopify documentation for one or more Polaris Web Components including properties, events, slots, examples, and usage guidelines. Use list_components first to decide which components you need, then request full docs here.",
   inputSchema: {
-    name: exports_external.string().describe("Component name (e.g., 'Button', 'TextField') or tag name (e.g., 's-button', 's-text-field')")
+    names: exports_external.array(exports_external.string()).describe("One or more component names (e.g., ['Button', 'TextField']) or tag names (e.g., ['s-button', 's-text-field'])")
   }
-}, async ({ name }) => {
-  const component = findComponent(name);
-  if (!component) {
-    return {
-      content: [
-        {
-          type: "text",
-          text: `Component "${name}" not found. Use list_components to see available components.`
-        }
-      ],
-      isError: true
-    };
-  }
-  return {
-    content: [
-      {
+}, async ({ names }) => {
+  const results = [];
+  const errors3 = [];
+  for (const name of names) {
+    const component = findComponent(name);
+    if (!component) {
+      errors3.push(componentNotFoundMessage(name));
+    } else {
+      results.push({
         type: "text",
         text: component.markdown
-      }
-    ]
+      });
+    }
+  }
+  if (errors3.length > 0) {
+    results.push({
+      type: "text",
+      text: errors3.join(`
+
+`)
+    });
+  }
+  return {
+    content: results.length ? results : [{ type: "text", text: "No component names provided." }],
+    ...errors3.length > 0 && results.length === errors3.length ? { isError: true } : {}
   };
 });
 server.registerTool("search_components", {
@@ -48114,8 +50535,7 @@ server.registerTool("search_components", {
     name: c.name,
     tagName: c.tagName,
     category: c.category,
-    description: c.description,
-    url: c.url
+    description: c.description
   }));
   return {
     content: [
@@ -48128,18 +50548,122 @@ server.registerTool("search_components", {
 });
 server.registerTool("search_icons", {
   title: "Search Icons",
-  description: "Search available Polaris icon names by keyword. Returns matching icon names that can be used in the `icon` property of components like Button, Badge, Select, and TextField.",
+  description: "Search available Polaris icon names by keyword with fuzzy matching and synonym support. Understands common aliases (e.g., 'warning' finds alert icons, 'shop' finds store icons). Returns matching icon names for use in the `icon` property of components like Button, Badge, Select, and TextField.",
   inputSchema: {
-    query: exports_external.string().optional().describe("Search keyword to filter icons (e.g., 'cart', 'arrow', 'check'). Omit to list all icons.")
+    query: exports_external.string().optional().describe("Search keywords to filter icons (e.g., 'cart', 'warning', 'shop login'). Supports multiple words and common synonyms. Omit to list all icons.")
   }
 }, async ({ query }) => {
-  const matches = query ? icons.filter((icon) => icon.includes(query.toLowerCase())) : icons;
+  if (!query) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `${icons.length} icons available:
+${icons.join(", ")}`
+        }
+      ]
+    };
+  }
+  const { exact, fuzzy } = searchIcons(icons, query);
+  const parts = [];
+  if (exact.length > 0) {
+    parts.push(`${exact.length} icons found:
+${exact.join(", ")}`);
+  }
+  if (fuzzy.length > 0) {
+    parts.push(`${fuzzy.length} similar icons (fuzzy match):
+${fuzzy.join(", ")}`);
+  }
+  if (parts.length === 0) {
+    parts.push(`No icons found matching "${query}". Try broader terms or use without a query to see all ${icons.length} icons.`);
+  }
   return {
     content: [
       {
         type: "text",
-        text: matches.length ? `${matches.length} icons found:
-${matches.join(", ")}` : `No icons found matching "${query}".`
+        text: parts.join(`
+
+`)
+      }
+    ]
+  };
+});
+server.registerTool("validate_markup", {
+  title: "Validate Markup",
+  description: "Validate HTML markup against known Polaris Web Components. Checks for unknown components, unknown attributes, and suggests fixes.",
+  inputSchema: {
+    html: exports_external.string().describe("HTML markup containing Polaris Web Components (s-* tags) to validate")
+  }
+}, async ({ html }) => {
+  const tagPattern = /<(s-[\w-]+)([^>]*)>/g;
+  const issues = [];
+  const checked = new Set;
+  let match;
+  while ((match = tagPattern.exec(html)) !== null) {
+    const tagName = match[1];
+    const attrsStr = match[2];
+    const component = components.find((c) => c.tagName === tagName);
+    if (!component) {
+      if (!checked.has(tagName)) {
+        const allTags = components.map((c) => c.tagName);
+        const suggestions = findClosest(tagName, allTags);
+        issues.push(`Unknown component <${tagName}>. Did you mean: ${suggestions.join(", ")}?`);
+        checked.add(tagName);
+      }
+      continue;
+    }
+    const attrPattern = /\s([\w-]+)(?:=(?:"[^"]*"|'[^']*'|[^\s>]*))?/g;
+    const knownProps = new Set(component.props.map((p) => p.name.toLowerCase()));
+    const htmlAttrs = new Set([
+      "id",
+      "class",
+      "style",
+      "slot",
+      "hidden",
+      "tabindex",
+      "aria-label",
+      "aria-hidden",
+      "aria-describedby",
+      "aria-expanded",
+      "aria-controls",
+      "aria-live",
+      "aria-busy",
+      "role",
+      "data-",
+      "part"
+    ]);
+    let attrMatch;
+    while ((attrMatch = attrPattern.exec(attrsStr)) !== null) {
+      const attr = attrMatch[1];
+      const attrLower = attr.toLowerCase();
+      if (htmlAttrs.has(attrLower) || attrLower.startsWith("aria-") || attrLower.startsWith("data-")) {
+        continue;
+      }
+      if (!knownProps.has(attrLower)) {
+        const propNames = component.props.map((p) => p.name);
+        const suggestions = findClosest(attr, propNames, 2);
+        issues.push(`<${tagName}>: Unknown attribute "${attr}". Did you mean: ${suggestions.join(", ")}?`);
+      }
+    }
+  }
+  if (issues.length === 0) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: "Markup is valid. All components and attributes are recognized."
+        }
+      ]
+    };
+  }
+  return {
+    content: [
+      {
+        type: "text",
+        text: `Found ${issues.length} issue${issues.length > 1 ? "s" : ""}:
+
+${issues.map((i, idx) => `${idx + 1}. ${i}`).join(`
+`)}`
       }
     ]
   };
