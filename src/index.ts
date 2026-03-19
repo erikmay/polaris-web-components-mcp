@@ -4,6 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import componentsData from "./data/components.json";
 import iconsData from "./data/icons.json";
+import guide from "./data/guide.md" with { type: "text" };
 import type { ComponentDoc } from "./types.ts";
 import { searchIcons, findClosest } from "./fuzzy.ts";
 
@@ -36,6 +37,7 @@ function componentNotFoundMessage(name: string): string {
 const server = new McpServer({
 	name: "polaris-web-components",
 	version: "1.0.0",
+	instructions: guide,
 });
 
 // Tool: List all components

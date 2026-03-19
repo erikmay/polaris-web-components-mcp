@@ -11,6 +11,10 @@ import { join } from "path";
 const DATA_DIR = join(import.meta.dir, "data");
 const OUTPUT_FILE = join(DATA_DIR, "components.json");
 const ICONS_FILE = join(DATA_DIR, "icons.json");
+const GUIDE_FILE = join(DATA_DIR, "guide.md");
+
+const GUIDE_URL =
+	"https://shopify.dev/docs/api/app-home/using-polaris-components.md";
 
 /**
  * Extracts icon names from a markdown icon type union and replaces it
@@ -128,16 +132,30 @@ async function fetchComponentMarkdown(slug: string): Promise<string> {
 	return response.text();
 }
 
+async function fetchGuide(): Promise<void> {
+	process.stdout.write("Fetching usage guide...");
+	const response = await fetch(GUIDE_URL);
+	if (!response.ok) {
+		console.log(` FAILED (${response.status})`);
+		return;
+	}
+	const markdown = await response.text();
+	await Bun.write(GUIDE_FILE, markdown);
+	console.log(` OK (${markdown.length} chars)`);
+}
+
 async function scrapeAll(): Promise<void> {
 	if (!existsSync(DATA_DIR)) {
 		mkdirSync(DATA_DIR, { recursive: true });
 	}
 
+	await fetchGuide();
+
 	const results: ComponentDoc[] = [];
 	const errors: string[] = [];
 	const allIcons = new Set<string>();
 
-	console.log(`Scraping ${COMPONENTS.length} components...\n`);
+	console.log(`\nScraping ${COMPONENTS.length} components...\n`);
 
 	for (const component of COMPONENTS) {
 		try {
