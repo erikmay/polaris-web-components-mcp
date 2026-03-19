@@ -54137,7 +54137,7 @@ server.registerTool("validate_markup", {
     while ((attrMatch = attrPattern.exec(attrsStr)) !== null) {
       const attr = attrMatch[1];
       const attrLower = attr.toLowerCase();
-      if (htmlAttrs.has(attrLower) || attrLower.startsWith("aria-") || attrLower.startsWith("data-")) {
+      if (htmlAttrs.has(attrLower) || attrLower.startsWith("aria-") || attrLower.startsWith("data-") || attrLower.startsWith("on")) {
         continue;
       }
       if (!knownProps.has(attrLower)) {

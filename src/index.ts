@@ -298,11 +298,12 @@ server.registerTool(
 				const attr = attrMatch[1]!;
 				const attrLower = attr.toLowerCase();
 
-				// Skip common HTML/aria/data attributes
+				// Skip common HTML/aria/data attributes and event handlers
 				if (
 					htmlAttrs.has(attrLower) ||
 					attrLower.startsWith("aria-") ||
-					attrLower.startsWith("data-")
+					attrLower.startsWith("data-") ||
+					attrLower.startsWith("on")
 				) {
 					continue;
 				}
