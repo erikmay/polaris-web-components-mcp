@@ -1,3 +1,9 @@
+export type ComponentProp = {
+	name: string;
+	type: string;
+	default?: string;
+};
+
 export type ComponentDoc = {
 	name: string;
 	tagName: string;
@@ -5,6 +11,7 @@ export type ComponentDoc = {
 	category: string;
 	description: string;
 	markdown: string;
+	props: ComponentProp[];
 };
 
 export type ComponentListEntry = {
