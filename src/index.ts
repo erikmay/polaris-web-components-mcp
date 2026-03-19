@@ -147,29 +147,74 @@ server.registerTool(
 	},
 );
 
+/**
+ * Maps common search terms (React Polaris names, generic UI terms)
+ * to Polaris Web Component equivalents for better discoverability.
+ */
+const COMPONENT_ALIASES: Record<string, string[]> = {
+	card: ["section", "box"],
+	"block-stack": ["stack"],
+	"inline-stack": ["stack"],
+	"horizontal-stack": ["stack"],
+	"vertical-stack": ["stack"],
+	layout: ["grid", "stack", "page"],
+	container: ["box", "section"],
+	input: ["text-field", "number-field", "email-field"],
+	dropdown: ["select", "popover"],
+	dialog: ["modal"],
+	alert: ["banner"],
+	tag: ["chip"],
+	label: ["text", "heading"],
+	nav: ["app-nav"],
+	navigation: ["app-nav"],
+	tabs: ["chip"],
+};
+
 // Tool: Search components by keyword
 server.registerTool(
 	"search_components",
 	{
 		title: "Search Components",
 		description:
-			"Search Polaris Web Components by keyword across names, descriptions, and documentation.",
+			"Search Polaris Web Components by keyword across names, descriptions, and documentation. Also understands common aliases (e.g., 'card' finds Section/Box, 'dialog' finds Modal).",
 		inputSchema: {
 			query: z.string().describe("Search query"),
 		},
 	},
 	async ({ query }) => {
 		const lower = query.toLowerCase();
-		const matches = components.filter((c) =>
-			c.markdown.toLowerCase().includes(lower),
+		const words = lower.split(/\s+/);
+
+		// Direct text search in markdown
+		const textMatches = new Set(
+			components
+				.filter((c) => c.markdown.toLowerCase().includes(lower))
+				.map((c) => c.name),
 		);
 
-		const results = matches.map((c) => ({
-			name: c.name,
-			tagName: c.tagName,
-			category: c.category,
-			description: c.description,
-		}));
+		// Alias expansion: search individual words through aliases
+		for (const word of words) {
+			const aliases = COMPONENT_ALIASES[word];
+			if (aliases) {
+				for (const alias of aliases) {
+					const found = components.find(
+						(c) =>
+							c.name.toLowerCase().includes(alias) ||
+							c.tagName.includes(alias),
+					);
+					if (found) textMatches.add(found.name);
+				}
+			}
+		}
+
+		const results = components
+			.filter((c) => textMatches.has(c.name))
+			.map((c) => ({
+				name: c.name,
+				tagName: c.tagName,
+				category: c.category,
+				description: c.description,
+			}));
 
 		return {
 			content: [
@@ -537,6 +582,46 @@ server.registerTool(
 			...(errors.length > 0 && results.length === errors.length
 				? { isError: true }
 				: {}),
+		};
+	},
+);
+
+// Tool: Search patterns by keyword
+server.registerTool(
+	"search_patterns",
+	{
+		title: "Search Patterns",
+		description:
+			"Search Polaris UI patterns by keyword across names, descriptions, and documentation. Use this to find patterns by use case (e.g., 'form layout', 'image preview', 'onboarding').",
+		inputSchema: {
+			query: z.string().describe("Search query (e.g., 'form', 'card', 'empty', 'settings')"),
+		},
+	},
+	async ({ query }) => {
+		const lower = query.toLowerCase();
+		const matches = patterns.filter(
+			(p) =>
+				p.name.toLowerCase().includes(lower) ||
+				p.description.toLowerCase().includes(lower) ||
+				p.markdown.toLowerCase().includes(lower),
+		);
+
+		const results = matches.map((p) => ({
+			name: p.name,
+			category: p.category,
+			description: p.description,
+			url: p.url,
+		}));
+
+		return {
+			content: [
+				{
+					type: "text" as const,
+					text: results.length
+						? JSON.stringify(results, null, "\t")
+						: `No patterns found matching "${query}".`,
+				},
+			],
 		};
 	},
 );

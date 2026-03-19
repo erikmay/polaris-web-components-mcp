@@ -28543,14 +28543,6 @@ Triggers actions or events, such as submitting forms, opening dialogs, or naviga
 
   Changes the visual appearance of the Button.
 
-### AnyString
-
-Prevents widening string literal types in a union to \\\`string\\\`.
-
-\`\`\`ts
-string & {}
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -28566,22 +28558,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **focus**
 
   **CallbackEventListener\\<TTagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -29719,112 +29695,6 @@ A generic interactive container component that provides a flexible alternative f
 
   This property is ignored if the component supports \`href\` or \`commandFor\`/\`command\` and one of them is set.
 
-### AccessibilityRole
-
-\`\`\`ts
-'main' | 'header' | 'footer' | 'section' | 'region' | 'aside' | 'navigation' | 'ordered-list' | 'list-item' | 'list-item-separator' | 'unordered-list' | 'separator' | 'status' | 'alert' | 'generic' | 'presentation' | 'none'
-\`\`\`
-
-### BackgroundColorKeyword
-
-\`\`\`ts
-'transparent' | ColorKeyword
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
-### MaybeResponsive
-
-\`\`\`ts
-T | \`@container\${string}\`
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
-### PaddingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### MaybeTwoValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\`
-\`\`\`
-
-### AnyString
-
-Prevents widening string literal types in a union to \\\`string\\\`.
-
-\`\`\`ts
-string & {}
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -29840,22 +29710,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **focus**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -30328,12 +30182,6 @@ Interactive button used to categorize or highlight content attributes. They are 
 
   Whether the chip is removable.
 
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -30349,22 +30197,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **remove**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -30748,14 +30580,6 @@ Makes text interactive, allowing users to navigate to other pages or perform spe
 
   Sets the tone of the Link, based on the intention of the information being conveyed.
 
-### AnyString
-
-Prevents widening string literal types in a union to \\\`string\\\`.
-
-\`\`\`ts
-string & {}
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -30763,22 +30587,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **click**
 
   **CallbackEventListener\\<TTagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -31880,22 +31688,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName> | null**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
 ## Slots
 
 * **children**
@@ -32442,24 +32234,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener<'input'>**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -32832,22 +32606,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Choice
 
@@ -33352,24 +33110,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener<'input'>**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -33821,24 +33561,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName> | null**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -34154,12 +33876,6 @@ Allow users to select a specific date with a date picker.
 
   Defaults to \`defaultView\`.
 
-### DateAutocompleteField
-
-\`\`\`ts
-'bday-day' | 'bday-month' | 'bday-year' | 'bday' | 'cc-expiry-month' | 'cc-expiry-year' | 'cc-expiry'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -34187,24 +33903,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **viewchange**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -34927,24 +34625,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName> | null**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -35366,24 +35046,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName$K>**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -35758,12 +35420,6 @@ Let users enter email addresses with optimized keyboard settings.
 
   The current value for the field. If omitted, the field will be empty.
 
-### EmailAutocompleteField
-
-\`\`\`ts
-'email' | 'home email' | 'mobile email' | 'fax email' | 'pager email'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -35783,24 +35439,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -36237,24 +35875,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -36724,12 +36344,6 @@ Collect numerical values from users with optimized keyboard settings and built-i
 
   The current value for the field. If omitted, the field will be empty.
 
-### NumberAutocompleteField
-
-\`\`\`ts
-'one-time-code' | 'cc-number' | 'cc-csc'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -36749,24 +36363,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -37164,12 +36760,6 @@ Securely collect sensitive information from users.
 
   The current value for the field. If omitted, the field will be empty.
 
-### PasswordAutocompleteField
-
-\`\`\`ts
-'current-password' | 'new-password'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -37189,24 +36779,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -37626,12 +37198,6 @@ A search input field that allows users to enter a search term.
 
   The current value for the field. If omitted, the field will be empty.
 
-### TextAutocompleteField
-
-\`\`\`ts
-'language' | 'organization' | 'additional-name' | 'address-level1' | 'address-level2' | 'address-level3' | 'address-level4' | 'address-line1' | 'address-line2' | 'address-line3' | 'country-name' | 'country' | 'family-name' | 'given-name' | 'honorific-prefix' | 'honorific-suffix' | 'name' | 'nickname' | 'one-time-code' | 'organization-title' | 'postal-code' | 'sex' | 'street-address' | 'transaction-currency' | 'username' | 'cc-additional-name' | 'cc-family-name' | 'cc-given-name' | 'cc-name' | 'cc-type'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -37651,24 +37217,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -37993,22 +37541,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -38504,24 +38036,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener<'input'>**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -38959,12 +38473,6 @@ Collect longer text content from users with a multi-line input that expands auto
 
   The current value for the field. If omitted, the field will be empty.
 
-### TextAutocompleteField
-
-\`\`\`ts
-'language' | 'organization' | 'additional-name' | 'address-level1' | 'address-level2' | 'address-level3' | 'address-level4' | 'address-line1' | 'address-line2' | 'address-line3' | 'country-name' | 'country' | 'family-name' | 'given-name' | 'honorific-prefix' | 'honorific-suffix' | 'name' | 'nickname' | 'one-time-code' | 'organization-title' | 'postal-code' | 'sex' | 'street-address' | 'transaction-currency' | 'username' | 'cc-additional-name' | 'cc-family-name' | 'cc-given-name' | 'cc-name' | 'cc-type'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -38984,24 +38492,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -39399,20 +38889,6 @@ A text input field that allows users to enter and edit text.
 
   The current value for the field. If omitted, the field will be empty.
 
-### TextAutocompleteField
-
-\`\`\`ts
-'language' | 'organization' | 'additional-name' | 'address-level1' | 'address-level2' | 'address-level3' | 'address-level4' | 'address-line1' | 'address-line2' | 'address-line3' | 'country-name' | 'country' | 'family-name' | 'given-name' | 'honorific-prefix' | 'honorific-suffix' | 'name' | 'nickname' | 'one-time-code' | 'organization-title' | 'postal-code' | 'sex' | 'street-address' | 'transaction-currency' | 'username' | 'cc-additional-name' | 'cc-family-name' | 'cc-given-name' | 'cc-name' | 'cc-type'
-\`\`\`
-
-### AnyString
-
-Prevents widening string literal types in a union to \\\`string\\\`.
-
-\`\`\`ts
-string & {}
-\`\`\`
-
 ## Slots
 
 * **accessory**
@@ -39440,24 +38916,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -39876,12 +39334,6 @@ Collect URLs from users with built-in formatting and validation.
 
   The current value for the field. If omitted, the field will be empty.
 
-### URLAutocompleteField
-
-\`\`\`ts
-'url' | 'photo' | 'impp' | 'home impp' | 'mobile impp' | 'fax impp' | 'pager impp'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -39901,24 +39353,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **input**
 
   **CallbackEventListener<'input'>**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -40412,104 +39846,6 @@ A generic container that provides a flexible alternative for custom designs not 
   This overrides the inline-start value of \`paddingInline\`.
 
   \`paddingInlineStart\` also accepts a [responsive value](https://shopify.dev/docs/api/app-home/using-polaris-components#responsive-values) string with the supported PaddingKeyword as a query value.
-
-### AccessibilityRole
-
-\`\`\`ts
-'main' | 'header' | 'footer' | 'section' | 'region' | 'aside' | 'navigation' | 'ordered-list' | 'list-item' | 'list-item-separator' | 'unordered-list' | 'separator' | 'status' | 'alert' | 'generic' | 'presentation' | 'none'
-\`\`\`
-
-### BackgroundColorKeyword
-
-\`\`\`ts
-'transparent' | ColorKeyword
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
-### MaybeResponsive
-
-\`\`\`ts
-T | \`@container\${string}\`
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
-### PaddingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### MaybeTwoValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\`
-\`\`\`
 
 ## Slots
 
@@ -41556,166 +40892,6 @@ Use \`s-grid\` to organize your content in a matrix of rows and columns and make
   * a single [SpacingKeyword](https://shopify.dev/docs/api/app-home/using-polaris-components#scale) value (e.g. \`large-100\`)
   * OR a [responsive value](https://shopify.dev/docs/api/app-home/using-polaris-components#responsive-values) string with the supported SpacingKeyword as a query value.
 
-### AccessibilityRole
-
-\`\`\`ts
-'main' | 'header' | 'footer' | 'section' | 'region' | 'aside' | 'navigation' | 'ordered-list' | 'list-item' | 'list-item-separator' | 'unordered-list' | 'separator' | 'status' | 'alert' | 'generic' | 'presentation' | 'none'
-\`\`\`
-
-### AlignContentKeyword
-
-Align content sets the distribution of space between and around content items along a flexbox's cross axis, or a grid or block-level element's block axis.
-
-\`\`\`ts
-'normal' | BaselinePosition | ContentDistribution | OverflowPosition | ContentPosition
-\`\`\`
-
-### BaselinePosition
-
-\`\`\`ts
-'baseline' | 'first baseline' | 'last baseline'
-\`\`\`
-
-### ContentDistribution
-
-\`\`\`ts
-'space-between' | 'space-around' | 'space-evenly' | 'stretch'
-\`\`\`
-
-### OverflowPosition
-
-\`\`\`ts
-\`unsafe \${ContentPosition}\` | \`safe \${ContentPosition}\`
-\`\`\`
-
-### ContentPosition
-
-\`\`\`ts
-'center' | 'start' | 'end'
-\`\`\`
-
-### AlignItemsKeyword
-
-Align items sets the align-self value on all direct children as a group.
-
-\`\`\`ts
-'normal' | 'stretch' | BaselinePosition | OverflowPosition | ContentPosition
-\`\`\`
-
-### BackgroundColorKeyword
-
-\`\`\`ts
-'transparent' | ColorKeyword
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
-### MaybeResponsive
-
-\`\`\`ts
-T | \`@container\${string}\`
-\`\`\`
-
-### SpacingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### MaybeTwoValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\`
-\`\`\`
-
-### JustifyContentKeyword
-
-Justify content defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.
-
-\`\`\`ts
-'normal' | ContentDistribution | OverflowPosition | ContentPosition
-\`\`\`
-
-### JustifyItemsKeyword
-
-Justify items defines the default justify-self for all items of the box, giving them all a default way of justifying each box along the appropriate axis.
-
-\`\`\`ts
-'normal' | 'stretch' | BaselinePosition | OverflowPosition | ContentPosition
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
-### PaddingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
 ## Slots
 
 * **children**
@@ -41998,104 +41174,6 @@ Display content within a single item of a grid layout.
   This overrides the inline-start value of \`paddingInline\`.
 
   \`paddingInlineStart\` also accepts a [responsive value](https://shopify.dev/docs/api/app-home/using-polaris-components#responsive-values) string with the supported PaddingKeyword as a query value.
-
-### AccessibilityRole
-
-\`\`\`ts
-'main' | 'header' | 'footer' | 'section' | 'region' | 'aside' | 'navigation' | 'ordered-list' | 'list-item' | 'list-item-separator' | 'unordered-list' | 'separator' | 'status' | 'alert' | 'generic' | 'presentation' | 'none'
-\`\`\`
-
-### BackgroundColorKeyword
-
-\`\`\`ts
-'transparent' | ColorKeyword
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
-### MaybeResponsive
-
-\`\`\`ts
-T | \`@container\${string}\`
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
-### PaddingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### MaybeTwoValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\`
-\`\`\`
 
 ## Slots
 
@@ -43616,158 +42694,6 @@ Organizes elements horizontally or vertically along the block or inline axis. Us
   * a single [SpacingKeyword](https://shopify.dev/docs/api/app-home/using-polaris-components#scale) value (e.g. \`large-100\`)
   * OR a [responsive value](https://shopify.dev/docs/api/app-home/using-polaris-components#responsive-values) string with the supported SpacingKeyword as a query value.
 
-### AccessibilityRole
-
-\`\`\`ts
-'main' | 'header' | 'footer' | 'section' | 'region' | 'aside' | 'navigation' | 'ordered-list' | 'list-item' | 'list-item-separator' | 'unordered-list' | 'separator' | 'status' | 'alert' | 'generic' | 'presentation' | 'none'
-\`\`\`
-
-### AlignContentKeyword
-
-Align content sets the distribution of space between and around content items along a flexbox's cross axis, or a grid or block-level element's block axis.
-
-\`\`\`ts
-'normal' | BaselinePosition | ContentDistribution | OverflowPosition | ContentPosition
-\`\`\`
-
-### BaselinePosition
-
-\`\`\`ts
-'baseline' | 'first baseline' | 'last baseline'
-\`\`\`
-
-### ContentDistribution
-
-\`\`\`ts
-'space-between' | 'space-around' | 'space-evenly' | 'stretch'
-\`\`\`
-
-### OverflowPosition
-
-\`\`\`ts
-\`unsafe \${ContentPosition}\` | \`safe \${ContentPosition}\`
-\`\`\`
-
-### ContentPosition
-
-\`\`\`ts
-'center' | 'start' | 'end'
-\`\`\`
-
-### AlignItemsKeyword
-
-Align items sets the align-self value on all direct children as a group.
-
-\`\`\`ts
-'normal' | 'stretch' | BaselinePosition | OverflowPosition | ContentPosition
-\`\`\`
-
-### BackgroundColorKeyword
-
-\`\`\`ts
-'transparent' | ColorKeyword
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
-### MaybeResponsive
-
-\`\`\`ts
-T | \`@container\${string}\`
-\`\`\`
-
-### SpacingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### MaybeTwoValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\`
-\`\`\`
-
-### JustifyContentKeyword
-
-Justify content defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.
-
-\`\`\`ts
-'normal' | ContentDistribution | OverflowPosition | ContentPosition
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
-### PaddingKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
 ## Slots
 
 * **children**
@@ -44265,22 +43191,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName> | null**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
 ## TableBody
 
 Define the main content area of a table, containing rows and cells that display data.
@@ -44332,18 +43242,6 @@ Display column names at the top of a table.
   * \`kicker\`: Content that is displayed before primary and secondary content, but with less visual prominence. Only one column can have this designation.
   * \`inline\`: Content that is displayed inline.
   * \`labeled\`: Each column with this designation displays as a heading-content pair.
-
-### HeaderFormat
-
-\`\`\`ts
-'base' | 'numeric' | 'currency'
-\`\`\`
-
-### ListSlotType
-
-\`\`\`ts
-'primary' | 'secondary' | 'kicker' | 'inline' | 'labeled'
-\`\`\`
 
 ## Slots
 
@@ -45221,24 +44119,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **load**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -46156,56 +45036,6 @@ Embeds an image within the interface and controls its presentation. Use to visua
 
   This overrides the \`src\` property.
 
-### BorderShorthand
-
-Represents a shorthand for defining a border. It can be a combination of size, optionally followed by color, optionally followed by style.
-
-\`\`\`ts
-BorderSizeKeyword | \`\${BorderSizeKeyword} \${ColorKeyword}\` | \`\${BorderSizeKeyword} \${ColorKeyword} \${BorderStyleKeyword}\`
-\`\`\`
-
-### BorderSizeKeyword
-
-\`\`\`ts
-SizeKeyword | 'none'
-\`\`\`
-
-### SizeKeyword
-
-\`\`\`ts
-'small-500' | 'small-400' | 'small-300' | 'small-200' | 'small-100' | 'small' | 'base' | 'large' | 'large-100' | 'large-200' | 'large-300' | 'large-400' | 'large-500'
-\`\`\`
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
-
-### BorderStyleKeyword
-
-\`\`\`ts
-'none' | 'solid' | 'dashed' | 'dotted' | 'auto'
-\`\`\`
-
-### MaybeAllValuesShorthandProperty
-
-\`\`\`ts
-T | \`\${T} \${T}\` | \`\${T} \${T} \${T}\` | \`\${T} \${T} \${T} \${T}\`
-\`\`\`
-
-### BoxBorderRadii
-
-\`\`\`ts
-'small' | 'small-200' | 'small-100' | 'base' | 'large' | 'large-100' | 'large-200' | 'none'
-\`\`\`
-
-### BoxBorderStyles
-
-\`\`\`ts
-'auto' | 'none' | 'solid' | 'dashed'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -46217,24 +45047,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **load**
 
   **CallbackEventListener\\<typeof tagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
 
 ### Examples
 
@@ -46654,24 +45466,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 
   **CallbackEventListener\\<typeof tagName> | null**
 
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
-
-Examples
-
 ### Examples
 
 * #### Code
@@ -46960,22 +45754,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **show**
 
   **CallbackEventListener\\<TTagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -47618,24 +46396,6 @@ Popovers are used to display content in an overlay that can be triggered by a bu
 
   Adjust the minimum inline size.
 
-### SizeUnitsOrAuto
-
-\`\`\`ts
-SizeUnits | 'auto'
-\`\`\`
-
-### SizeUnits
-
-\`\`\`ts
-\`\${number}px\` | \`\${number}%\` | \`0\`
-\`\`\`
-
-### SizeUnitsOrNone
-
-\`\`\`ts
-SizeUnits | 'none'
-\`\`\`
-
 ## Events
 
 Learn more about [registering events](https://shopify.dev/docs/api/app-home/using-polaris-components#event-handling).
@@ -47663,22 +46423,6 @@ Learn more about [registering events](https://shopify.dev/docs/api/app-home/usin
 * **toggle**
 
   **CallbackEventListener\\<TTagName> | null**
-
-### CallbackEventListener
-
-\`\`\`ts
-(EventListener & {
-      (event: CallbackEvent<T>): void;
-    }) | null
-\`\`\`
-
-### CallbackEvent
-
-\`\`\`ts
-Event & {
-  currentTarget: HTMLElementTagNameMap[T];
-}
-\`\`\`
 
 ## Slots
 
@@ -48382,12 +47126,6 @@ Represents a set of user-supplied keywords that help label, organize, and catego
   **Default: 'base'**
 
   Modify the color to be more or less intense.
-
-### ColorKeyword
-
-\`\`\`ts
-'subdued' | 'base' | 'strong'
-\`\`\`
 
 ## Slots
 
@@ -50333,28 +49071,6 @@ The \`s-page\` component is available for use in your app. It configures the tit
 * **heading**
 
   **string**
-
-### SPageChildren
-
-* breadcrumbActions
-
-  \`\`\`ts
-  HTMLElement
-  \`\`\`
-
-* primaryAction
-
-  \`\`\`ts
-  HTMLElement
-  \`\`\`
-
-* secondaryActions
-
-  \`\`\`ts
-  HTMLElement[]
-  \`\`\`
-
-Examples
 
 ## Preview
 
@@ -54023,16 +52739,45 @@ server.registerTool("get_component", {
     ...errors3.length > 0 && results.length === errors3.length ? { isError: true } : {}
   };
 });
+var COMPONENT_ALIASES = {
+  card: ["section", "box"],
+  "block-stack": ["stack"],
+  "inline-stack": ["stack"],
+  "horizontal-stack": ["stack"],
+  "vertical-stack": ["stack"],
+  layout: ["grid", "stack", "page"],
+  container: ["box", "section"],
+  input: ["text-field", "number-field", "email-field"],
+  dropdown: ["select", "popover"],
+  dialog: ["modal"],
+  alert: ["banner"],
+  tag: ["chip"],
+  label: ["text", "heading"],
+  nav: ["app-nav"],
+  navigation: ["app-nav"],
+  tabs: ["chip"]
+};
 server.registerTool("search_components", {
   title: "Search Components",
-  description: "Search Polaris Web Components by keyword across names, descriptions, and documentation.",
+  description: "Search Polaris Web Components by keyword across names, descriptions, and documentation. Also understands common aliases (e.g., 'card' finds Section/Box, 'dialog' finds Modal).",
   inputSchema: {
     query: exports_external.string().describe("Search query")
   }
 }, async ({ query }) => {
   const lower = query.toLowerCase();
-  const matches = components.filter((c) => c.markdown.toLowerCase().includes(lower));
-  const results = matches.map((c) => ({
+  const words = lower.split(/\s+/);
+  const textMatches = new Set(components.filter((c) => c.markdown.toLowerCase().includes(lower)).map((c) => c.name));
+  for (const word of words) {
+    const aliases = COMPONENT_ALIASES[word];
+    if (aliases) {
+      for (const alias of aliases) {
+        const found = components.find((c) => c.name.toLowerCase().includes(alias) || c.tagName.includes(alias));
+        if (found)
+          textMatches.add(found.name);
+      }
+    }
+  }
+  const results = components.filter((c) => textMatches.has(c.name)).map((c) => ({
     name: c.name,
     tagName: c.tagName,
     category: c.category,
@@ -54303,6 +53048,30 @@ server.registerTool("get_pattern", {
   return {
     content: results.length ? results : [{ type: "text", text: "No pattern names provided." }],
     ...errors3.length > 0 && results.length === errors3.length ? { isError: true } : {}
+  };
+});
+server.registerTool("search_patterns", {
+  title: "Search Patterns",
+  description: "Search Polaris UI patterns by keyword across names, descriptions, and documentation. Use this to find patterns by use case (e.g., 'form layout', 'image preview', 'onboarding').",
+  inputSchema: {
+    query: exports_external.string().describe("Search query (e.g., 'form', 'card', 'empty', 'settings')")
+  }
+}, async ({ query }) => {
+  const lower = query.toLowerCase();
+  const matches = patterns.filter((p) => p.name.toLowerCase().includes(lower) || p.description.toLowerCase().includes(lower) || p.markdown.toLowerCase().includes(lower));
+  const results = matches.map((p) => ({
+    name: p.name,
+    category: p.category,
+    description: p.description,
+    url: p.url
+  }));
+  return {
+    content: [
+      {
+        type: "text",
+        text: results.length ? JSON.stringify(results, null, "\t") : `No patterns found matching "${query}".`
+      }
+    ]
   };
 });
 var transport = new StdioServerTransport;

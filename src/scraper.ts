@@ -125,6 +125,42 @@ function extractProps(markdown: string): ComponentProp[] {
 	return props;
 }
 
+/**
+ * Strips CSS type-union subsections (### TypeName) from the Properties section.
+ * These define standard CSS values (AlignContentKeyword, BorderShorthand, etc.)
+ * that bloat the output without adding useful information.
+ */
+function stripTypeSubsections(markdown: string): string {
+	const lines = markdown.split("\n");
+	const result: string[] = [];
+	let stripping = false;
+
+	for (let i = 0; i < lines.length; i++) {
+		const line = lines[i]!;
+
+		if (line.startsWith("### ")) {
+			// Keep ### Examples sections, strip everything else that looks like a type definition
+			if (line.includes("Examples")) {
+				stripping = false;
+			} else {
+				stripping = true;
+				continue;
+			}
+		}
+
+		// Stop stripping at ## sections
+		if (line.startsWith("## ")) {
+			stripping = false;
+		}
+
+		if (!stripping) {
+			result.push(line);
+		}
+	}
+
+	return result.join("\n");
+}
+
 async function fetchComponentMarkdown(slug: string): Promise<string> {
 	const url = getComponentMdUrl(slug);
 	const response = await fetch(url);
@@ -164,11 +200,12 @@ async function scrapeAll(): Promise<void> {
 			process.stdout.write(`  ${component.name}...`);
 			const rawMarkdown = await fetchComponentMarkdown(component.slug);
 			const description = parseFrontmatterDescription(rawMarkdown);
-			const { markdown, icons } = extractIcons(rawMarkdown);
+			const { markdown: iconStripped, icons } = extractIcons(rawMarkdown);
+			const markdown = stripTypeSubsections(iconStripped);
 
 			for (const icon of icons) allIcons.add(icon);
 
-			const props = extractProps(markdown);
+			const props = extractProps(iconStripped);
 
 			results.push({
 				name: component.name,
@@ -181,8 +218,8 @@ async function scrapeAll(): Promise<void> {
 			});
 
 			const saved = rawMarkdown.length - markdown.length;
-			const iconNote = saved > 0 ? ` (${saved} chars saved)` : "";
-			console.log(` OK (${markdown.length} chars, ${props.length} props)${iconNote}`);
+			const savedNote = saved > 0 ? ` (${saved} chars trimmed)` : "";
+			console.log(` OK (${markdown.length} chars, ${props.length} props)${savedNote}`);
 
 			// Be polite with requests
 			await Bun.sleep(200);
